@@ -22,7 +22,7 @@ export default function CategoryCards() {
           >
             Afinadores
           </Text>
-          <Link>
+          <Link href={"/products"}>
             <Image src="https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928515/StringsAndKeys/1001_rx2ca0.jpg"></Image>
           </Link>
         </Box>
@@ -36,7 +36,7 @@ export default function CategoryCards() {
           >
             Correas
           </Text>
-          <Link>
+          <Link href={"/products"}>
             <Image src="https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928515/StringsAndKeys/1005_piq59k.jpg"></Image>
           </Link>
         </Box>
@@ -50,7 +50,7 @@ export default function CategoryCards() {
           >
             Fundas
           </Text>
-          <Link>
+          <Link href={"/products"}>
             <Image src="https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928515/StringsAndKeys/1011_hynib2.jpg"></Image>
           </Link>
         </Box>
@@ -64,7 +64,7 @@ export default function CategoryCards() {
           >
             Púas
           </Text>
-          <Link>
+          <Link href={"/products"}>
             <Image src="https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928516/StringsAndKeys/1013_w6vdpp.jpg"></Image>
           </Link>
         </Box>
@@ -78,7 +78,7 @@ export default function CategoryCards() {
           >
             Cables
           </Text>
-          <Link>
+          <Link href={"/products"}>
             <Image src="https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928516/StringsAndKeys/1016_sbqdew.jpg"></Image>
           </Link>
         </Box>
@@ -92,7 +92,7 @@ export default function CategoryCards() {
           >
             Teclados
           </Text>
-          <Link>
+          <Link href={"/products"}>
             <Image src="https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928517/StringsAndKeys/1021_kodwap.jpg"></Image>
           </Link>
         </Box>
@@ -100,7 +100,7 @@ export default function CategoryCards() {
           <Text color={"black"} fontSize={"20px"} fontWeight={"700"}>
             Instrumentos de Cuerda
           </Text>
-          <Link>
+          <Link href={"/products"}>
             <Image src="https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928517/StringsAndKeys/1026_wht8zz.jpg"></Image>
           </Link>
         </Box>
@@ -108,7 +108,7 @@ export default function CategoryCards() {
           <Text color={"black"} fontSize={"20px"} fontWeight={"700"}>
             Instrumentos de Viento
           </Text>
-          <Link>
+          <Link href={"/products"}>
             <Image src="https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928519/StringsAndKeys/1043_roo9gt.jpg"></Image>
           </Link>
         </Box>
@@ -122,7 +122,7 @@ export default function CategoryCards() {
           >
             Amplificadores
           </Text>
-          <Link>
+          <Link href={"/products"}>
             <Image src="https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928520/StringsAndKeys/1049_qfmpgg.jpg"></Image>
           </Link>
         </Box>
@@ -136,11 +136,12 @@ export default function CategoryCards() {
           >
             Baterías y Percusión
           </Text>
-          <Link>
+          <Link href={"/products"}>
             <Image src="https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928520/StringsAndKeys/1052_dvhx0o.jpg"></Image>
           </Link>
         </Box>
         <Link
+          href={"/products"}
           _hover={{
             textDecoration: "none",
           }}
@@ -160,7 +161,7 @@ export default function CategoryCards() {
       </SimpleGrid>
       <br />
       <br />
-      <Image h={"300px"} src="/ads.png"></Image>
+      <Image h={"250px"} src="/ads.png"></Image>
     </Box>
   );
 }
