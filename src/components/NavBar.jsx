@@ -31,8 +31,8 @@ export default function WithSubnavigation() {
   return (
     <Box>
       <Flex
-        bg={useColorModeValue("white", "black")}
-        color={useColorModeValue("gray.600", "white")}
+        bg={useColorModeValue("black", "black")}
+        color={useColorModeValue("white", "white")}
         minH={"60px"}
         h={'100px'}
         w={'100%'}
@@ -40,7 +40,7 @@ export default function WithSubnavigation() {
         px={{ base: 4 }}
         borderBottom={1}
         borderStyle={"solid"}
-        borderColor={useColorModeValue("gray.200", "gray.900")}
+        borderColor={useColorModeValue("gray.900", "gray.900")}
         align={"center"}
         position="fixed"
       >
@@ -60,7 +60,7 @@ export default function WithSubnavigation() {
         </Flex>
         <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }} ml={10}>
             <Box boxSize={'60px'} h={''}>
-              <Link>
+              <Link href={'/'}>
               <Image src="Logo White.png"></Image>
               </Link>
             </Box>
@@ -117,9 +117,9 @@ export default function WithSubnavigation() {
 }
 
 const DesktopNav = () => {
-  const linkColor = useColorModeValue("gray.600", "gray.200")
-  const linkHoverColor = useColorModeValue("gray.800", "#ffa200")
-  const popoverContentBgColor = useColorModeValue("white", "black")
+  const linkColor = useColorModeValue("gray.200", "gray.200")
+  const linkHoverColor = useColorModeValue("#ffa200", "#ffa200")
+  const popoverContentBgColor = useColorModeValue("black", "black")
 
   return (
     <Stack direction={"row"} spacing={4}>
@@ -175,7 +175,7 @@ const DesktopSubNav = ({ label, href, subLabel }) => {
       display={"block"}
       p={2}
       rounded={"md"}
-      _hover={{ bg: useColorModeValue("pink.50", "gray.900") }}
+      _hover={{ bg: useColorModeValue("gray.900", "gray.900") }}
     >
       <Stack direction={"row"} align={"center"}>
         <Box>
@@ -207,7 +207,7 @@ const DesktopSubNav = ({ label, href, subLabel }) => {
 const MobileNav = () => {
   return (
     <Stack
-      bg={useColorModeValue("white", "gray.800")}
+      bg={useColorModeValue("gray.800", "gray.800")}
       p={4}
       display={{ md: "none" }}
     >
@@ -236,7 +236,7 @@ const MobileNavItem = ({ label, children, href }) => {
       >
         <Text
           fontWeight={600}
-          color={useColorModeValue("gray.600", "gray.200")}
+          color={useColorModeValue("gray.200", "gray.200")}
         >
           {label}
         </Text>
@@ -257,7 +257,7 @@ const MobileNavItem = ({ label, children, href }) => {
           pl={4}
           borderLeft={1}
           borderStyle={"solid"}
-          borderColor={useColorModeValue("gray.200", "gray.700")}
+          borderColor={useColorModeValue("gray.700", "gray.700")}
           align={"start"}
         >
           {children &&
@@ -277,7 +277,7 @@ const NAV_ITEMS = [
     label: "Admin",
     children: [
       {
-        label: "Ventas",
+        label: "Modificar o Crear Producto",
         subLabel: "Trending Design to inspire you",
         href: "#"
       },
@@ -308,7 +308,7 @@ const NAV_ITEMS = [
     href: "#"
   },
   {
-    label: "Contacto",
-    href: "#"
+    label: "Inicio",
+    href: "/"
   }
 ]
