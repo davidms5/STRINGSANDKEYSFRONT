@@ -10,44 +10,45 @@ import {
   Image,
 } from '@chakra-ui/react'
 
-const IMAGE =
-  'https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928517/StringsAndKeys/1026_wht8zz.jpg'
 
-export default function ProductSimple() {
+export default function ProductSimple(props) {
   return (
     <Center py={3}>
       <Box
         role={'group'}
-        p={4}
-        maxW={'250px'}
-        maxH={'400px'}
+        p={2}
+        maxW={'90%'}
+        h={'33vh'}
+        maxH={'40vh'}
         w={'full'}
         bg={'white'}
         boxShadow={'2xl'}
         rounded={'lg'}
         pos={'relative'}
-        zIndex={1}>
+        zIndex={1}
+        overflow={'hidden'}>
           <Image
+          pl={'15%'}
             rounded={'lg'}
-            maxH={'200px'}
+            maxH={'150px'}
             objectFit={'cover'}
-            src={IMAGE}
+            src={props.image}
             alt="#"
           />
         <Stack pt={3} align={'center'}>
-          <Text color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
-            Epiphone
+          <Text color={'gray.500'} fontSize={'10px'} textTransform={'uppercase'}>
+            {props.brand}
           </Text>
-          <Heading fontSize={'20px'} fontFamily={'body'} fontWeight={500}>
-            Epiphone Black Guitar
+          <Heading fontSize={'15px'} fontFamily={'body'} fontWeight={500}>
+            {props.name}
           </Heading>
           <Stack direction={'row'} align={'center'}>
             <Text fontWeight={800} fontSize={'xl'}>
-              $180000
+              ${props.price}
             </Text>
-            <Text textDecoration={'line-through'} color={'gray.600'}>
+            {/* <Text textDecoration={'line-through'} color={'gray.600'}>
               $199000
-            </Text>
+            </Text> */}
           </Stack>
         </Stack>
       </Box>
