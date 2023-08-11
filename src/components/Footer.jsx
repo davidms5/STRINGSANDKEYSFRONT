@@ -34,7 +34,7 @@ const Logo = props => {
 const SocialButton = ({ children, label, href }) => {
   return (
     <chakra.button
-      bg={useColorModeValue("blackAlpha.100", "whiteAlpha.100")}
+      bg={useColorModeValue("whiteAlpha.100", "whiteAlpha.100")}
       rounded={"full"}
       w={8}
       h={8}
@@ -46,7 +46,7 @@ const SocialButton = ({ children, label, href }) => {
       justifyContent={"center"}
       transition={"background 0.3s ease"}
       _hover={{
-        bg: useColorModeValue("blackAlpha.200", "whiteAlpha.200")
+        bg: useColorModeValue("whiteAlpha.200", "whiteAlpha.200")
       }}
     >
       <VisuallyHidden>{label}</VisuallyHidden>
@@ -58,8 +58,8 @@ const SocialButton = ({ children, label, href }) => {
 export default function SmallWithLogoLeft() {
   return (
     <Box
-      bg={useColorModeValue("gray.50", "black")}
-      color={useColorModeValue("gray.700", "gray.200")}
+      bg={useColorModeValue("black", "black")}
+      color={useColorModeValue("gray.200", "gray.200")}
     >
       <Container
         as={Stack}
