@@ -17,12 +17,12 @@ const Home = () => {
         <WithSubnavigation></WithSubnavigation>
         <Box h={'1860px'} pt={'100px'}>
           <Flex direction={'column'} align={'center'}>
-            <Box bg={"#ffa200"} h={'500px'} w={'100%'} align={'center'} pt={'250px'} borderBottom={'3px solid black'}>
-              <Heading color={'black'}>CARROUSEL</Heading>
+            <Box h={'600px'} w={'100%'} align={'center'} borderBottom={'3px solid black'} overflow={'hidden'}>
+              <Image  src="/slider2.jpg"></Image>
             </Box>
             <br />
             <Box>
-              <Heading color={'black'}>¿Qué estás buscando?</Heading>
+              <Heading color={'black'}>Nuestros Productos</Heading>
             </Box>
             <br />
             <br />
