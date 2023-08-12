@@ -19,7 +19,9 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 const FilterAndOrder = () => {
+
   const dispatch = useDispatch();
+
   const filteredProducts = useSelector((state) => state.filteredProducts);
 
 
@@ -27,27 +29,18 @@ const FilterAndOrder = () => {
 
   const handleBrandFilter = (e) => {
     const selectedBrand = e.target.value;
-
     dispatch(filterBrand(selectedBrand));
   };
 
   const [sliderValue, setSliderValue] = useState(250000);
-  const [priceInput, setPriceInput] = useState("");
 
-  const handlePriceInput = (e) => {
-    const { value } = e.target;
-    setPriceInput(value);
-  };
-
-  const handleFilters = (e) => {
-    setFilters({ ...filters, [e.target.name]: e.target.value });
-  };
 
   return (
     <Box>
       <Flex direction={"column"}>
+        <Text>{filteredProducts.length>50? "Todos los Productos" : filteredProducts[0].category}</Text>
         <Heading fontSize={"30px"}>$ {sliderValue}</Heading>
-        <Box bg={""} h={"200px"} w={"90%"} mt={"7%"}>
+        <Box bg={""} h={"300px"} w={"90%"} mt={"7%"}>
           <Flex>
             <Slider
               aria-label="slider-ex-4"
@@ -70,7 +63,7 @@ const FilterAndOrder = () => {
             _hover={{ transform: "translateY(-2px)", boxShadow: "lg" }}
             bg={"#ffa200"}
             color={"black"}
-            onClick={handleFilters}
+            onClick={''}
             name="reset"
           >
             Reset
@@ -79,9 +72,8 @@ const FilterAndOrder = () => {
             _hover={{ transform: "translateY(-2px)", boxShadow: "lg" }}
             bg={"#ffa200"}
             color={"black"}
-            onClick={handleFilters}
-            value={priceInput}
-            name="price"
+            onClick={''}
+            name="buscar"
           >
             Buscar
           </Button>
