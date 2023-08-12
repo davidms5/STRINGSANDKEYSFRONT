@@ -17,7 +17,6 @@ const SearchBar = () => {
     }
 
     function handlerSubmit(e){
-        //e.preventDefaut()
         dispatch(getProductName(e.target.value))
         setName("")
     }
