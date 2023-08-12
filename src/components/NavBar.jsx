@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import {
   Box,
   Flex,
@@ -14,19 +14,19 @@ import {
   PopoverTrigger,
   PopoverContent,
   useColorModeValue,
-  useDisclosure
-} from "@chakra-ui/react"
+  useDisclosure,
+} from "@chakra-ui/react";
 import {
   HamburgerIcon,
   CloseIcon,
   ChevronDownIcon,
-  ChevronRightIcon
-} from "@chakra-ui/icons"
-import SearchBar from "../components/SearchBar"
-import { FaShoppingCart } from 'react-icons/fa';
+  ChevronRightIcon,
+} from "@chakra-ui/icons";
+import SearchBar from "../components/SearchBar";
+import { FaShoppingCart } from "react-icons/fa";
 
 export default function WithSubnavigation() {
-  const { isOpen, onToggle } = useDisclosure()
+  const { isOpen, onToggle } = useDisclosure();
 
   return (
     <Box>
@@ -34,8 +34,8 @@ export default function WithSubnavigation() {
         bg={useColorModeValue("black", "black")}
         color={useColorModeValue("white", "white")}
         minH={"60px"}
-        h={'100px'}
-        w={'100%'}
+        h={"100px"}
+        w={"100%"}
         py={{ base: 2 }}
         px={{ base: 4 }}
         borderBottom={1}
@@ -45,31 +45,20 @@ export default function WithSubnavigation() {
         position="fixed"
       >
         <Flex
-          flex={{ base: 1, md: "auto" }}
-          ml={{ base: -2 }}
-          display={{ base: "flex", md: "none" }}
+          flex={{ base: 1 }}
+          justify={{ base: "center", md: "start" }}
+          ml={10}
         >
-          <IconButton
-            onClick={onToggle}
-            icon={
-              isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />
-            }
-            variant={"ghost"}
-            aria-label={"Toggle Navigation"}
-          />
-        </Flex>
-        <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }} ml={10}>
-            <Box boxSize={'60px'} h={''}>
-              <Link href={'/'}>
+          <Box boxSize={"70px"} mb={"1%"}>
+            <Link href={"/"}>
               <Image src="Logo White.png"></Image>
-              </Link>
-            </Box>
-
-          <Flex display={{ base: "none", md: "flex" }} ml={10} mt={'25px'}>
-            <DesktopNav />
-          </Flex>
-          <Box ml={'5%'} mt={'1%'}>
-          <SearchBar/>
+            </Link>
+          </Box>
+          <Box ml={'3%'}>
+            <Flex align={'center'} mt={'3%'}>
+              <Box ><DesktopNav/></Box>
+              <Box><SearchBar /></Box>
+            </Flex>
           </Box>
         </Flex>
 
@@ -78,10 +67,10 @@ export default function WithSubnavigation() {
           justify={"flex-end"}
           direction={"row"}
           spacing={10}
-          mr={'2%'}
+          mr={"2%"}
         >
           <Link>
-          <FaShoppingCart size={40} color="#ffa200" />
+            <FaShoppingCart size={40} color="#ffa200" />
           </Link>
           <Button
             as={"a"}
@@ -101,7 +90,7 @@ export default function WithSubnavigation() {
             bg={"#ffa200"}
             href={"#"}
             _hover={{
-              bg: ""
+              bg: "",
             }}
           >
             Inicia Sesion
@@ -113,17 +102,17 @@ export default function WithSubnavigation() {
         <MobileNav />
       </Collapse>
     </Box>
-  )
+  );
 }
 
 const DesktopNav = () => {
-  const linkColor = useColorModeValue("gray.200", "gray.200")
-  const linkHoverColor = useColorModeValue("#ffa200", "#ffa200")
-  const popoverContentBgColor = useColorModeValue("black", "black")
+  const linkColor = useColorModeValue("gray.200", "gray.200");
+  const linkHoverColor = useColorModeValue("#ffa200", "#ffa200");
+  const popoverContentBgColor = useColorModeValue("black", "black");
 
   return (
     <Stack direction={"row"} spacing={4}>
-      {NAV_ITEMS.map(navItem => (
+      {NAV_ITEMS.map((navItem) => (
         <Box key={navItem.label}>
           <Popover trigger={"hover"} placement={"bottom-start"}>
             <PopoverTrigger>
@@ -136,7 +125,7 @@ const DesktopNav = () => {
                 color={linkColor}
                 _hover={{
                   textDecoration: "none",
-                  color: linkHoverColor
+                  color: linkHoverColor,
                 }}
               >
                 {navItem.label}
@@ -153,7 +142,7 @@ const DesktopNav = () => {
                 minW={"sm"}
               >
                 <Stack>
-                  {navItem.children.map(child => (
+                  {navItem.children.map((child) => (
                     <DesktopSubNav key={child.label} {...child} />
                   ))}
                 </Stack>
@@ -163,8 +152,8 @@ const DesktopNav = () => {
         </Box>
       ))}
     </Stack>
-  )
-}
+  );
+};
 
 const DesktopSubNav = ({ label, href, subLabel }) => {
   return (
@@ -201,8 +190,8 @@ const DesktopSubNav = ({ label, href, subLabel }) => {
         </Flex>
       </Stack>
     </Box>
-  )
-}
+  );
+};
 
 const MobileNav = () => {
   return (
@@ -211,15 +200,15 @@ const MobileNav = () => {
       p={4}
       display={{ md: "none" }}
     >
-      {NAV_ITEMS.map(navItem => (
+      {NAV_ITEMS.map((navItem) => (
         <MobileNavItem key={navItem.label} {...navItem} />
       ))}
     </Stack>
-  )
-}
+  );
+};
 
 const MobileNavItem = ({ label, children, href }) => {
-  const { isOpen, onToggle } = useDisclosure()
+  const { isOpen, onToggle } = useDisclosure();
 
   return (
     <Stack spacing={4} onClick={children && onToggle}>
@@ -231,7 +220,7 @@ const MobileNavItem = ({ label, children, href }) => {
         alignItems="center"
         _hover={{
           textDecoration: "none",
-          color:{ color: "#ffa200" }
+          color: { color: "#ffa200" },
         }}
       >
         <Text
@@ -261,7 +250,7 @@ const MobileNavItem = ({ label, children, href }) => {
           align={"start"}
         >
           {children &&
-            children.map(child => (
+            children.map((child) => (
               <Box as="a" key={child.label} py={2} href={child.href}>
                 {child.label}
               </Box>
@@ -269,8 +258,8 @@ const MobileNavItem = ({ label, children, href }) => {
         </Stack>
       </Collapse>
     </Stack>
-  )
-}
+  );
+};
 
 const NAV_ITEMS = [
   {
@@ -279,14 +268,14 @@ const NAV_ITEMS = [
       {
         label: "Modificar o Crear Producto",
         subLabel: "Trending Design to inspire you",
-        href: "#"
+        href: "#",
       },
       {
         label: "Estadisticas",
         subLabel: "Up-and-coming Designers",
-        href: "#"
-      }
-    ]
+        href: "#",
+      },
+    ],
   },
   {
     label: "Mi Cuenta",
@@ -294,21 +283,21 @@ const NAV_ITEMS = [
       {
         label: "Mis Datos",
         subLabel: "Find your dream design job",
-        href: "#"
+        href: "#",
       },
       {
         label: "Mis Favoritos",
         subLabel: "An exclusive list for contract work",
-        href: "#"
-      }
-    ]
+        href: "#",
+      },
+    ],
   },
   {
     label: "Nosotros",
-    href: "#"
+    href: "#",
   },
   {
     label: "Inicio",
-    href: "/"
-  }
-]
+    href: "/",
+  },
+];

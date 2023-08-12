@@ -25,9 +25,10 @@ const SearchBar = () => {
 
         <div>
             <Input 
-            w = {'400px'} 
+            w = {'80%'} 
             bg = {'white'} 
-            color = {'black'} 
+            color = {'black'}
+            mr={'2%'} 
             placeholder='Busca tu Instrumento' 
             _placeholder={{ opacity: 1, color: 'gray.500' }} 
             onChange={(e)=>{handlerInput(e)} }

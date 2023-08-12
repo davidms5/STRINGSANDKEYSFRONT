@@ -41,7 +41,7 @@ const FilterAndOrder = () => {
             : filteredProducts[0].category}
         </Text>
         <Heading fontSize={"30px"}>$ {sliderValue}</Heading>
-        <Box bg={""} h={"300px"} w={"90%"} mt={"7%"}>
+        <Box bg={""} h={"20vh"} w={"90%"} mt={"7%"}>
           <Flex>
             <Slider
               aria-label="slider-ex-4"
@@ -59,7 +59,7 @@ const FilterAndOrder = () => {
           </Flex>
         </Box>
         <Box>
-          <Flex justify={"center"} justifyContent={"space-around"}>
+          <Flex justify={"center"} mb={'20%'}>
             <select onChange={(e) => dispatch(orderByPrice(e.target.value))}>
               {["Ascendente", "Descendente"].map((e, i) => (
                 <option value={e} key={i}>
@@ -67,7 +67,10 @@ const FilterAndOrder = () => {
                 </option>
               ))}
             </select>
-
+          </Flex>
+        </Box>
+        <Box>
+          <Flex justify={"center"} justifyContent={"space-around"}>
             <Button
               _hover={{ transform: "translateY(-2px)", boxShadow: "lg" }}
               bg={"#ffa200"}
