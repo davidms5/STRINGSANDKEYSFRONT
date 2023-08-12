@@ -21,7 +21,7 @@ export default function ProductSimple(props) {
         role={"group"}
         pb={"50%"}
         maxW={"90%"}
-        h={"33vh"}
+        h={"35vh"}
         maxH={"40vh"}
         w={"full"}
         bg={"white"}
@@ -32,6 +32,7 @@ export default function ProductSimple(props) {
         <Flex direction={"column"}>
           <Box>
           <Image
+          h={'20vh'}
             rounded={"lg"}
             src={props.image}
             alt="#"
