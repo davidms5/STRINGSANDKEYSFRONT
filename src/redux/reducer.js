@@ -18,12 +18,12 @@ const rootReducer = (state = initialState, action) => {
     case ORDER_BY_PRICE:
       const { payload } = action;
       let orderPrice;
-      if (payload === "ascendente") {
-        orderPrice = state.sort((a, b) => a.price - b.price);
+      if (payload === "Ascendente") {
+        orderPrice = state.filteredProducts.sort((a, b) => a.price - b.price);
       } else {
-        orderPrice = state.sort((a, b) => b.price - a.price);
+        orderPrice = state.filteredProducts.sort((a, b) => b.price - a.price);
       }
-      return { ...state, filteredProducts: orderPrice };
+      return { ...state, filteredProducts: [...orderPrice] };
 
     case GET_PRODUCTS:
       return { ...state, products: action.payload };
