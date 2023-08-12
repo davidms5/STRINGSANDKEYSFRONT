@@ -20,7 +20,7 @@ const SearchBar = () => {
         dispatch(getProductName(e.target.value))
         setName("")
     }
-    console.log(name)
+    //console.log(name)
     return (
 
         <div>

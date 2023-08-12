@@ -8,6 +8,7 @@ export const GET_PRODUCT_NAME = 'GET_PRODUCT_NAME'
 export const GET_PRODUCT_BY_ID = 'GET_PRODUCT_BY_ID';
 export const EMPTY_STATES = "EMPTY_STATES";
 export const FILTER_PRICE = "FILTER_PRICE";
+export const POST_PRODUCT = "POST_PRODUCT";
 
 const VITE_LOCAL_HOST = import.meta.env.VITE_LOCAL_HOST;
 
@@ -76,7 +77,7 @@ export const emptyStates = () => {
 export const getDetailProduct = (id) => {
     return async function (dispatch) {
         try {
-            let response = await axios(`http://localhost:3010/products/${id}`);
+            let response = await axios(`${VITE_LOCAL_HOST}/products/${id}`);
             return dispatch({
                 type: GET_PRODUCT_BY_ID,
                 payload: response.data
@@ -85,4 +86,12 @@ export const getDetailProduct = (id) => {
             throw new Error(error.message)
         }   
     }
+}
+
+export const PostProduct = (product) => {
+    return async function (dispatch) {
+        const response = await axios.post(`${VITE_LOCAL_HOST}/products/create`, product);
+        console.log(response.data)
+        return response;
+      };
 }
