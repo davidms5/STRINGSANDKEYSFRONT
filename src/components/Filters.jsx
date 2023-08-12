@@ -12,18 +12,16 @@ import {
   Input,
   Button,
 } from "@chakra-ui/react";
-import { filterBrand } from "../redux/actions";
+import { filterBrand, orderByPrice } from "../redux/actions";
 import { MdGraphicEq } from "react-icons/md";
 import { useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 
 const FilterAndOrder = () => {
-
   const dispatch = useDispatch();
 
   const filteredProducts = useSelector((state) => state.filteredProducts);
-
 
   const brands = filteredProducts.map((el) => el.brand);
 
@@ -34,11 +32,14 @@ const FilterAndOrder = () => {
 
   const [sliderValue, setSliderValue] = useState(250000);
 
-
   return (
     <Box>
       <Flex direction={"column"}>
-        <Text>{filteredProducts.length>50? "Todos los Productos" : filteredProducts[0].category}</Text>
+        <Text>
+          {filteredProducts.length > 50
+            ? "Todos los Productos"
+            : filteredProducts[0].category}
+        </Text>
         <Heading fontSize={"30px"}>$ {sliderValue}</Heading>
         <Box bg={""} h={"300px"} w={"90%"} mt={"7%"}>
           <Flex>
@@ -58,25 +59,34 @@ const FilterAndOrder = () => {
           </Flex>
         </Box>
         <Box>
-          <Flex justify={'center'} justifyContent={'space-around'}>
-          <Button
-            _hover={{ transform: "translateY(-2px)", boxShadow: "lg" }}
-            bg={"#ffa200"}
-            color={"black"}
-            onClick={''}
-            name="reset"
-          >
-            Reset
-          </Button>
-          <Button
-            _hover={{ transform: "translateY(-2px)", boxShadow: "lg" }}
-            bg={"#ffa200"}
-            color={"black"}
-            onClick={''}
-            name="buscar"
-          >
-            Buscar
-          </Button>
+          <Flex justify={"center"} justifyContent={"space-around"}>
+            <select onChange={(e) => dispatch(orderByPrice(e.target.value))}>
+              {["Ascendente", "Descendente"].map((e, i) => (
+                <option value={e} key={i}>
+                  {e}
+                </option>
+              ))}
+            </select>
+
+            <Button
+              _hover={{ transform: "translateY(-2px)", boxShadow: "lg" }}
+              bg={"#ffa200"}
+              color={"black"}
+              onClick={handleFilters}
+              name="reset"
+            >
+              Reset
+            </Button>
+            <Button
+              _hover={{ transform: "translateY(-2px)", boxShadow: "lg" }}
+              bg={"#ffa200"}
+              color={"black"}
+              onClick={handleFilters}
+              value={priceInput}
+              name="price"
+            >
+              Buscar
+            </Button>
           </Flex>
         </Box>
       </Flex>
