@@ -12,7 +12,7 @@ import {
   Input,
   Button,
 } from "@chakra-ui/react";
-import { filterBrand, orderByPrice, filterCategory } from "../redux/actions";
+import { filterBrand, orderByPrice, filterCategory, filterPrice } from "../redux/actions";
 import { MdGraphicEq } from "react-icons/md";
 import { useState } from "react";
 
@@ -31,26 +31,39 @@ const FilterAndOrder = () => {
     dispatch(filterBrand(selectedBrand));
   };
 
+  const handlePriceFilter = (val) => {
+    setSliderValue(val)
+    const selectedPrice = val;
+    dispatch(filterPrice(selectedPrice));
+  };
+
+  
+
   const [sliderValue, setSliderValue] = useState(250000);
 
   const resetInput = () => {
     dispatch(filterCategory("todos"))
   }
 
+  const firstCategory = filteredProducts.length > 0 ? filteredProducts[0].category : null;
+
+  const isSingleCategory = filteredProducts.every(product => product.category === firstCategory);
+
+
   return (
     <Box>
       <Flex direction={"column"}>
         <Text>
-          {filteredProducts.length > 50
-            ? "Todos los Productos"
-            : filteredProducts[0].category}
+        {isSingleCategory
+        ? firstCategory
+        : "Todos los Productos"}
         </Text>
         <Heading fontSize={"30px"}>$ {sliderValue}</Heading>
         <Box bg={""} h={"20vh"} w={"90%"} mt={"7%"}>
           <Flex>
             <Slider
               aria-label="slider-ex-4"
-              onChange={(val) => setSliderValue(val)}
+              onChange={(val) => handlePriceFilter(val)}
               min={0}
               max={500000}
             >
@@ -87,14 +100,14 @@ const FilterAndOrder = () => {
             >
               Reset
             </Button>
-            <Button
+            {/* <Button
               _hover={{ transform: "translateY(-2px)", boxShadow: "lg" }}
               bg={"#ffa200"}
               color={"black"}
               name="buscar"
             >
               Buscar
-            </Button>
+            </Button> */}
           </Flex>
         </Box>
       </Flex>

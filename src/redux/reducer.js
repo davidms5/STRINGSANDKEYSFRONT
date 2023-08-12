@@ -1,7 +1,7 @@
 import { persistReducer } from "redux-persist";
 import storageSession from "redux-persist/lib/storage/session";
 import storage from "redux-persist/lib/storage";
-import { FILTER_BRAND, GET_PRODUCTS, FILTER_CATEGORY, EMPTY_STATES, ORDER_BY_PRICE, GET_PRODUCT_NAME, GET_PRODUCT_BY_ID} from "./actions";
+import { FILTER_BRAND, GET_PRODUCTS, FILTER_CATEGORY, EMPTY_STATES, ORDER_BY_PRICE, GET_PRODUCT_NAME, GET_PRODUCT_BY_ID, FILTER_PRICE} from "./actions";
 const persistConfig = {
   key: "root",
   //storage: storageSession,
@@ -53,7 +53,12 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         filteredProducts: productsByCategory,
       };
-
+      case FILTER_PRICE:
+        const productsByPrice = [...state.products].filter((el) => el.price <= action.payload);
+        return {
+          ...state,
+          filteredProducts: productsByPrice,
+        };
       case GET_PRODUCT_BY_ID:
       return {
         ...state, 
