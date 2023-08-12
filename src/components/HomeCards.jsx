@@ -4,6 +4,7 @@ import {
   SimpleGrid,
   Text,
   Image,
+  Flex,
   Heading,
   textDecoration,
 } from "@chakra-ui/react";
@@ -216,15 +217,17 @@ export default function CategoryCards() {
           }}
         >
           <Box
-            mt={"50px"}
+            mt={"10%"}
             bg={"black"}
-            w={"1305px"}
-            h={"100px"}
+            w={"665%"}
+            h={"10vh"}
             rounded={"10px"}
           >
+            <Flex justify={'center'}>
             <Heading pt={"25px"} color={"white"}>
               TODOS NUESTROS PRODUCTOS
             </Heading>
+            </Flex>
           </Box>
         </Link>
       </SimpleGrid>
