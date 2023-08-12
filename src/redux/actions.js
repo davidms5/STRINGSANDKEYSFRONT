@@ -6,6 +6,7 @@ export const FILTER_CATEGORY = "FILTER_CATEGORY";
 export const ORDER_BY_PRICE = "ORDER_BY_PRICE"
 export const GET_PRODUCT_NAME = 'GET_PRODUCT_NAME'
 export const GET_PRODUCT_BY_ID = 'GET_PRODUCT_BY_ID';
+export const EMPTY_STATES = "EMPTY_STATES";
 
 const VITE_LOCAL_HOST = import.meta.env.VITE_LOCAL_HOST;
 
@@ -57,6 +58,12 @@ export const orderByPrice = (status) => {
         payload: status,
     }
 };
+export const emptyStates = () => {
+    return {
+      type: EMPTY_STATES,
+    };
+  };
+
 
 export const getDetailProduct = (id) => {
     return async function (dispatch) {

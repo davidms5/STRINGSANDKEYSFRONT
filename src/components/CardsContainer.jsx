@@ -10,7 +10,7 @@ const CardsContainer = () => {
 
   const [currentPage, setCurrentPage] = useState(0);
   const productPerPage = 10;
-  const totalPages = Math.ceil(allproducts.length / productPerPage);
+  const totalPages = filteredProducts? Math.ceil(filteredProducts.length / productPerPage) : Math.ceil(allproducts.length / productPerPage);
 
   const displayedProducts = filteredProducts? filteredProducts.slice(
     currentPage * productPerPage,

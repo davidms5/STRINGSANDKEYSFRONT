@@ -2,8 +2,18 @@ import { Box, Flex, Heading, Image, } from "@chakra-ui/react";
 import WithSubnavigation from "../components/NavBar";
 import SmallWithLogoLeft from "../components/Footer"
 import CategoryCards from "../components/HomeCards"
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { emptyStates } from "../redux/actions";
 
 const Home = () => {
+
+  // const dispatch = useDispatch()
+
+  // useEffect(() => {
+  //   dispatch(emptyStates())
+  // })
+
   return (
     <Box
     backgroundImage="url('/bg.jpg')"
