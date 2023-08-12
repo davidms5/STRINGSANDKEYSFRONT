@@ -12,9 +12,10 @@ import {
   Input,
   Button,
 } from "@chakra-ui/react";
-import { filterBrand, orderByPrice } from "../redux/actions";
+import { filterBrand, orderByPrice, filterCategory } from "../redux/actions";
 import { MdGraphicEq } from "react-icons/md";
 import { useState } from "react";
+
 
 import { useDispatch, useSelector } from "react-redux";
 
@@ -31,6 +32,10 @@ const FilterAndOrder = () => {
   };
 
   const [sliderValue, setSliderValue] = useState(250000);
+
+  const resetInput = () => {
+    dispatch(filterCategory("todos"))
+  }
 
   return (
     <Box>
@@ -76,6 +81,9 @@ const FilterAndOrder = () => {
               bg={"#ffa200"}
               color={"black"}
               name="reset"
+              onClick={() => {
+                resetInput();
+              }}
             >
               Reset
             </Button>
