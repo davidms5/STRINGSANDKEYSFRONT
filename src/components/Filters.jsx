@@ -24,10 +24,17 @@ const FilterAndOrder = () => {
 
   const filteredProducts = useSelector((state) => state.filteredProducts);
 
-  const brands = filteredProducts.map((el) => el.brand);
+
+  const brandsRaw = filteredProducts.map((el) => el.brand);
+  const brands = brandsRaw.filter((item, index)=> {
+    return brandsRaw.indexOf(item) === index;
+  })
+
+  console.log(brands);
 
   const handleBrandFilter = (e) => {
-    const selectedBrand = e.target.value;
+    const selectedBrand = e.target.innerText;
+    console.log(selectedBrand);
     dispatch(filterBrand(selectedBrand));
   };
 
@@ -77,6 +84,20 @@ const FilterAndOrder = () => {
           </Flex>
         </Box>
         <Box>
+          <Flex direction={"column"}>
+            <Text>Marcas:</Text>
+            {brands?.map((el, index) => (
+              <Text 
+                key={index} 
+                onClick={handleBrandFilter}
+                cursor='pointer'
+              >
+                {el}
+              </Text>
+            ))}
+          </Flex>
+        </Box>
+        <Box>
           <Flex justify={"center"} mb={'20%'}>
             <select onChange={(e) => dispatch(orderByPrice(e.target.value))}>
               {["Ascendente", "Descendente"].map((e, i) => (
@@ -111,6 +132,7 @@ const FilterAndOrder = () => {
           </Flex>
         </Box>
       </Flex>
+
     </Box>
   );
 };
