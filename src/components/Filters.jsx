@@ -72,7 +72,6 @@ const FilterAndOrder = () => {
               _hover={{ transform: "translateY(-2px)", boxShadow: "lg" }}
               bg={"#ffa200"}
               color={"black"}
-              onClick={handleFilters}
               name="reset"
             >
               Reset
@@ -81,9 +80,7 @@ const FilterAndOrder = () => {
               _hover={{ transform: "translateY(-2px)", boxShadow: "lg" }}
               bg={"#ffa200"}
               color={"black"}
-              onClick={handleFilters}
-              value={priceInput}
-              name="price"
+              name="buscar"
             >
               Buscar
             </Button>
