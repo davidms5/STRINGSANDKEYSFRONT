@@ -1,7 +1,7 @@
 import { persistReducer } from "redux-persist";
 import storageSession from "redux-persist/lib/storage/session";
 import storage from "redux-persist/lib/storage";
-import { FILTER_BRAND, GET_PRODUCTS } from "./actions";
+import { FILTER_BRAND, GET_PRODUCTS, GET_PRODUCT_NAME} from "./actions";
 const persistConfig = {
   key: "root",
   //storage: storageSession,
@@ -17,6 +17,11 @@ const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_PRODUCTS:
       return {...state, products: action.payload };
+    case GET_PRODUCT_NAME :
+      return {
+        ...state,
+        products:action.payload
+        }
     case FILTER_BRAND:
       const productsByBrand =
         action.payload === "todos"
