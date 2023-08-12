@@ -21,7 +21,7 @@ const rootReducer = (state = initialState, action) => {
       const productsByBrand =
         action.payload === "todos"
           ? [...state.products]
-          : [...state.products].filter((el) => el.brand === action.payload);
+          : [...state.filteredProducts].filter((el) => el.brand === action.payload);
 
       return {
         ...state,

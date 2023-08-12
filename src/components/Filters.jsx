@@ -23,10 +23,16 @@ const FilterAndOrder = () => {
   const filteredProducts = useSelector((state) => state.filteredProducts);
 
 
-  const brands = filteredProducts.map((el) => el.brand);
+  const brandsRaw = filteredProducts.map((el) => el.brand);
+  const brands = brandsRaw.filter((item, index)=> {
+    return brandsRaw.indexOf(item) === index;
+  })
+
+  console.log(brands);
 
   const handleBrandFilter = (e) => {
-    const selectedBrand = e.target.value;
+    const selectedBrand = e.target.innerText;
+    console.log(selectedBrand);
 
     dispatch(filterBrand(selectedBrand));
   };
@@ -65,29 +71,44 @@ const FilterAndOrder = () => {
           </Flex>
         </Box>
         <Box>
-          <Flex justify={'center'} justifyContent={'space-around'}>
-          <Button
-            _hover={{ transform: "translateY(-2px)", boxShadow: "lg" }}
-            bg={"#ffa200"}
-            color={"black"}
-            onClick={handleFilters}
-            name="reset"
-          >
-            Reset
-          </Button>
-          <Button
-            _hover={{ transform: "translateY(-2px)", boxShadow: "lg" }}
-            bg={"#ffa200"}
-            color={"black"}
-            onClick={handleFilters}
-            value={priceInput}
-            name="price"
-          >
-            Buscar
-          </Button>
+          <Flex direction={"column"}>
+            <Text>Marcas:</Text>
+            {brands?.map((el, index) => (
+              <Text 
+                key={index} 
+                onClick={handleBrandFilter}
+                cursor='pointer'
+              >
+                {el}
+              </Text>
+            ))}
+          </Flex>
+        </Box>
+        <Box>
+          <Flex justify={"center"} justifyContent={"space-around"}>
+            <Button
+              _hover={{ transform: "translateY(-2px)", boxShadow: "lg" }}
+              bg={"#ffa200"}
+              color={"black"}
+              onClick={handleFilters}
+              name="reset"
+            >
+              Reset
+            </Button>
+            <Button
+              _hover={{ transform: "translateY(-2px)", boxShadow: "lg" }}
+              bg={"#ffa200"}
+              color={"black"}
+              onClick={handleFilters}
+              value={priceInput}
+              name="price"
+            >
+              Buscar
+            </Button>
           </Flex>
         </Box>
       </Flex>
+
     </Box>
   );
 };
