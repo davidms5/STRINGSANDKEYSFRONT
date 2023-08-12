@@ -29,26 +29,19 @@ const Products = () => {
           backgroundSize="cover"
           w={"100%"}
           h={"82vh"}
-          mt={'100px'}
-          pt={'2vh'}
+          mt={"100px"}
+          pt={"2vh"}
           overflow={"hidden"}
         >
           <Flex justify={"space-around"}>
-            <Box
-              color={"black"}
-              bg={"gray.200"}
-              w={"15%"}
-              h={"50vh"}
-              rounded={"5px"}
-              p={"1%"}
-            >
+            <Box>
               <FilterAndOrder></FilterAndOrder>
             </Box>
             <Box
               color={"black"}
               bg={"gray.200"}
               w={"70%"}
-              h={"75vh"}
+              h={"78vh"}
               rounded={"5px"}
             >
               <CardsContainer></CardsContainer>
