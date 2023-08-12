@@ -5,6 +5,7 @@ export const FILTER_BRAND = 'FILTER_BRAND';
 export const FILTER_CATEGORY = "FILTER_CATEGORY";
 export const ORDER_BY_PRICE = "ORDER_BY_PRICE"
 export const GET_PRODUCT_NAME = 'GET_PRODUCT_NAME'
+export const GET_PRODUCT_BY_ID = 'GET_PRODUCT_BY_ID';
 
 const VITE_LOCAL_HOST = import.meta.env.VITE_LOCAL_HOST;
 
@@ -56,3 +57,17 @@ export const orderByPrice = (status) => {
         payload: status,
     }
 };
+
+export const getDetailProduct = (id) => {
+    return async function (dispatch) {
+        try {
+            let response = await axios(`http://localhost:3010/products/${id}`);
+            return dispatch({
+                type: GET_PRODUCT_BY_ID,
+                payload: response.data
+            })
+        } catch (error) {
+            throw new Error(error.message)
+        }   
+    }
+}

@@ -2,6 +2,7 @@ import ProductSimple from "../components/Card";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { Box, Flex, Heading, Image, SimpleGrid } from "@chakra-ui/react";
+import {Link} from "react-router-dom";
 
 const CardsContainer = () => {
   const allproducts = useSelector((state) => state.products);
@@ -58,6 +59,7 @@ const CardsContainer = () => {
             {displayedProducts.length > 0 &&
               displayedProducts.map((product) => {
                 return (
+                  <Link to={`/detail/${product.id}`}>
                   <ProductSimple
                     key={product.id}
                     id={product.id}
@@ -66,6 +68,7 @@ const CardsContainer = () => {
                     brand={product.brand}
                     price={product.price}
                   />
+                  </Link>
                 );
               })}
           </SimpleGrid>
