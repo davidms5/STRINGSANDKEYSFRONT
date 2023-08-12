@@ -39,7 +39,7 @@ const Products = () => {
             h={'93vh'} pt={'130px'}
             >
                 <Flex justify={'space-around'}>
-                    <Box color={'black'} bg={'gray.200'} w={'15%'} h={'40vh'} rounded={'5px'}>
+                    <Box color={'black'} bg={'gray.200'} w={'15%'} h={'40vh'} rounded={'5px'} p={'1%'}>
                         <FilterAndOrder></FilterAndOrder>
                     </Box>
                     <Box color={'black'} bg={'gray.200'} w={'70%'} h={'75vh'} rounded={'5px'}>

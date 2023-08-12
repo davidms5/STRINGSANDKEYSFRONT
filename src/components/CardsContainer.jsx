@@ -5,11 +5,17 @@ import { Box, Flex, Heading, Image, SimpleGrid } from "@chakra-ui/react";
 
 const CardsContainer = () => {
   const allproducts = useSelector((state) => state.products);
+  const filteredProducts = useSelector((state) => state.filteredProducts)
+
   const [currentPage, setCurrentPage] = useState(0);
   const productPerPage = 10;
   const totalPages = Math.ceil(allproducts.length / productPerPage);
 
-  const displayedProducts = allproducts.slice(
+  const displayedProducts = filteredProducts? filteredProducts.slice(
+    currentPage * productPerPage,
+    (currentPage + 1) * productPerPage
+  ) : 
+  allproducts.slice(
     currentPage * productPerPage,
     (currentPage + 1) * productPerPage
   );
