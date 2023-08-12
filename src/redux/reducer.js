@@ -31,7 +31,7 @@ const rootReducer = (state = initialState, action) => {
     case GET_PRODUCT_NAME :
       return {
         ...state,
-        products:action.payload
+        filteredProducts:action.payload
         }
     case FILTER_BRAND:
       const productsByBrand =
