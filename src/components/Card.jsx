@@ -1,57 +1,59 @@
-'use client'
+"use client";
 
 import {
   Box,
   Center,
   useColorModeValue,
   Heading,
+  Flex,
   Text,
   Stack,
   Image,
-} from '@chakra-ui/react'
-
+} from "@chakra-ui/react";
 
 export default function ProductSimple(props) {
+
+  const truncatedName = props.name.length > 50 ? `${props.name.substring(0, 30)}...` : props.name;
+
   return (
-    <Center py={3}>
+    <Center py={2}>
       <Box
-        role={'group'}
-        p={2}
-        maxW={'90%'}
-        h={'33vh'}
-        maxH={'40vh'}
-        w={'full'}
-        bg={'white'}
-        boxShadow={'2xl'}
-        rounded={'lg'}
-        pos={'relative'}
-        zIndex={1}
-        overflow={'hidden'}>
+        role={"group"}
+        pb={"50%"}
+        maxW={"90%"}
+        h={"33vh"}
+        maxH={"40vh"}
+        w={"full"}
+        bg={"white"}
+        boxShadow={"2xl"}
+        rounded={"lg"}
+        p={4}
+      >
+        <Flex direction={"column"}>
+          <Box>
           <Image
-          pl={'15%'}
-            rounded={'lg'}
-            maxH={'150px'}
-            objectFit={'cover'}
+            rounded={"lg"}
             src={props.image}
             alt="#"
           />
-        <Stack pt={3} align={'center'}>
-          <Text color={'gray.500'} fontSize={'10px'} textTransform={'uppercase'}>
-            {props.brand}
-          </Text>
-          <Heading fontSize={'15px'} fontFamily={'body'} fontWeight={500}>
-            {props.name}
-          </Heading>
-          <Stack direction={'row'} align={'center'}>
-            <Text fontWeight={800} fontSize={'xl'}>
-              ${props.price}
+          </Box>
+          <Stack align={"center"} spacing={0}>
+            <Text
+              color={"gray.500"}
+              fontSize={"10px"}
+              textTransform={"uppercase"}
+            >
+              {props.brand}
             </Text>
-            {/* <Text textDecoration={'line-through'} color={'gray.600'}>
-              $199000
-            </Text> */}
+            <Heading h={'5vh'} fontSize={"70%"} fontFamily={"body"} fontWeight={500}>
+              {truncatedName}
+            </Heading>
+            <Text fontWeight={800} fontSize={"3vh"}>
+                ${props.price}
+              </Text>
           </Stack>
-        </Stack>
+        </Flex>
       </Box>
     </Center>
-  )
+  );
 }
