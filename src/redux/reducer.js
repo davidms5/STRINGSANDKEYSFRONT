@@ -1,7 +1,7 @@
 import { persistReducer } from "redux-persist";
 import storageSession from "redux-persist/lib/storage/session";
 import storage from "redux-persist/lib/storage";
-import { FILTER_BRAND, GET_PRODUCTS, FILTER_CATEGORY } from "./actions";
+import { FILTER_BRAND, GET_PRODUCTS, FILTER_CATEGORY, EMPTY_STATES, ORDER_BY_PRICE, GET_PRODUCT_NAME, GET_PRODUCT_BY_ID, FILTER_PRICE} from "./actions";
 const persistConfig = {
   key: "root",
   //storage: storageSession,
@@ -11,12 +11,28 @@ const persistConfig = {
 const initialState = {
   products: [],
   filteredProducts: [],
+  details: {},
 };
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
+    case ORDER_BY_PRICE:
+      const { payload } = action;
+      let orderPrice;
+      if (payload === "Ascendente") {
+        orderPrice = state.filteredProducts.sort((a, b) => a.price - b.price);
+      } else {
+        orderPrice = state.filteredProducts.sort((a, b) => b.price - a.price);
+      }
+      return { ...state, filteredProducts: [...orderPrice] };
+
     case GET_PRODUCTS:
       return { ...state, products: action.payload };
+    case GET_PRODUCT_NAME :
+      return {
+        ...state,
+        filteredProducts:action.payload
+        }
     case FILTER_BRAND:
       const productsByBrand =
         action.payload === "todos"
@@ -31,12 +47,30 @@ const rootReducer = (state = initialState, action) => {
       const productsByCategory =
         action.payload === "todos"
           ? [...state.products]
-          : [...state.products].filter((el) => el.category === action.payload );
+          : [...state.products].filter((el) => el.category === action.payload);
 
       return {
         ...state,
         filteredProducts: productsByCategory,
       };
+      case FILTER_PRICE:
+        const productsByPrice = [...state.products].filter((el) => el.price <= action.payload);
+        return {
+          ...state,
+          filteredProducts: productsByPrice,
+        };
+      case GET_PRODUCT_BY_ID:
+      return {
+        ...state, 
+        details: action.payload
+      };
+
+      case EMPTY_STATES:
+        return{
+          ...state,
+          products:[],
+          filteredProducts: [],
+        }
     default:
       return { ...state };
   }

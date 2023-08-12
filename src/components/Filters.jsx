@@ -12,14 +12,16 @@ import {
   Input,
   Button,
 } from "@chakra-ui/react";
-import { filterBrand } from "../redux/actions";
+import { filterBrand, orderByPrice, filterCategory, filterPrice } from "../redux/actions";
 import { MdGraphicEq } from "react-icons/md";
 import { useState } from "react";
+
 
 import { useDispatch, useSelector } from "react-redux";
 
 const FilterAndOrder = () => {
   const dispatch = useDispatch();
+
   const filteredProducts = useSelector((state) => state.filteredProducts);
 
 
@@ -33,31 +35,42 @@ const FilterAndOrder = () => {
   const handleBrandFilter = (e) => {
     const selectedBrand = e.target.innerText;
     console.log(selectedBrand);
-
     dispatch(filterBrand(selectedBrand));
   };
 
+  const handlePriceFilter = (val) => {
+    setSliderValue(val)
+    const selectedPrice = val;
+    dispatch(filterPrice(selectedPrice));
+  };
+
+  
+
   const [sliderValue, setSliderValue] = useState(250000);
-  const [priceInput, setPriceInput] = useState("");
 
-  const handlePriceInput = (e) => {
-    const { value } = e.target;
-    setPriceInput(value);
-  };
+  const resetInput = () => {
+    dispatch(filterCategory("todos"))
+  }
 
-  const handleFilters = (e) => {
-    setFilters({ ...filters, [e.target.name]: e.target.value });
-  };
+  const firstCategory = filteredProducts.length > 0 ? filteredProducts[0].category : null;
+
+  const isSingleCategory = filteredProducts.every(product => product.category === firstCategory);
+
 
   return (
     <Box>
       <Flex direction={"column"}>
+        <Text>
+        {isSingleCategory
+        ? firstCategory
+        : "Todos los Productos"}
+        </Text>
         <Heading fontSize={"30px"}>$ {sliderValue}</Heading>
-        <Box bg={""} h={"200px"} w={"90%"} mt={"7%"}>
+        <Box bg={""} h={"20vh"} w={"90%"} mt={"7%"}>
           <Flex>
             <Slider
               aria-label="slider-ex-4"
-              onChange={(val) => setSliderValue(val)}
+              onChange={(val) => handlePriceFilter(val)}
               min={0}
               max={500000}
             >
@@ -85,26 +98,37 @@ const FilterAndOrder = () => {
           </Flex>
         </Box>
         <Box>
+          <Flex justify={"center"} mb={'20%'}>
+            <select onChange={(e) => dispatch(orderByPrice(e.target.value))}>
+              {["Ascendente", "Descendente"].map((e, i) => (
+                <option value={e} key={i}>
+                  {e}
+                </option>
+              ))}
+            </select>
+          </Flex>
+        </Box>
+        <Box>
           <Flex justify={"center"} justifyContent={"space-around"}>
             <Button
               _hover={{ transform: "translateY(-2px)", boxShadow: "lg" }}
               bg={"#ffa200"}
               color={"black"}
-              onClick={handleFilters}
               name="reset"
+              onClick={() => {
+                resetInput();
+              }}
             >
               Reset
             </Button>
-            <Button
+            {/* <Button
               _hover={{ transform: "translateY(-2px)", boxShadow: "lg" }}
               bg={"#ffa200"}
               color={"black"}
-              onClick={handleFilters}
-              value={priceInput}
-              name="price"
+              name="buscar"
             >
               Buscar
-            </Button>
+            </Button> */}
           </Flex>
         </Box>
       </Flex>
