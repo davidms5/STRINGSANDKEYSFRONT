@@ -275,6 +275,10 @@ const NAV_ITEMS = [
         subLabel: "Up-and-coming Designers",
         href: "#",
       },
+      {
+        label: "Crear Producto",
+        href:"/admin/crear-producto"
+      }
     ],
   },
   {
