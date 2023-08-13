@@ -12,6 +12,7 @@ import {
     Heading,
     SimpleGrid,
     StackDivider,
+    Link,
     useColorModeValue,
     VisuallyHidden,
     List,
@@ -27,6 +28,8 @@ import {
   import { useDispatch, useSelector } from "react-redux";
   import { useEffect } from "react";
   import { getDetailProduct } from "../redux/actions";
+  import SmallWithLogoLeft from "../components/Footer";
+  import WithSubnavigation from "../components/NavBar";
 
 
 const Detail = () => {
@@ -40,43 +43,36 @@ const Detail = () => {
   }, [dispatch, id]);
 
 
-    /* const fakeDetail = {
-      id: 1001,
-      name: "Afinador Digital Cromático Pinza Korg Griptune",
-      brand: "Korg",
-      category: "Afinadores",
-      description:
-        "El clip que sujeta el afinador al clavijero de la guitarra utiliza un mecanismo de pinza que puede ser colocado fácilmente. Esto te permite afinar de manera natural sin molestarte al interpretar. Puesto que el clip puede abrirse en un rango de 14-22 mm (0.55”– 0,87”), se puede fijar a una amplia variedad de instrumentos, desde guitarras eléctricas hasta guitarras clásicas.",
-      image:
-        "https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928515/StringsAndKeys/1001_rx2ca0.jpg",
-      product_status: true,
-      quantity: 2000,
-      price: 11.159,
-    }; */
-
     return (
-      <Box
-        backgroundImage="url('/BG3.jpg')"
-        backgroundPosition="center"
-        backgroundRepeat="no-repeat"
-        backgroundSize="cover"
-        width="100vw"
-        height="100vh"
-      >
-        {/* <NavBar2></NavBar2> */}
+      <Box>
+      <Flex direction={"column"}>
+        <Box>
+          <WithSubnavigation></WithSubnavigation>
+        </Box>
+        <Box
+          backgroundImage="url('/bg.jpg')"
+          backgroundPosition="center"
+          backgroundRepeat="no-repeat"
+          backgroundSize="cover"
+          w={"100%"}
+          h={"82vh"}
+          mt={"100px"}
+          pt={"2vh"}
+          overflow={"hidden"}
+        >
         <Container maxW={"7xl"} bg={""}>
           <SimpleGrid
             columns={{ base: 1, lg: 2 }}
             spacing={{ base: 8, md: 10 }}
             py={{ base: 18, md: 6 }}
           >
-            <Flex mt={"20%"} ml={"20%"}>
+            <Flex mt={"20%"}>
               <Image
                 rounded={"md"}
                 alt={"product image"}
                 src={detailProduct.image}
                 align={"center"}
-                maxH={"350px"}
+                maxH={"50vh"}
               />
             </Flex>
             <Stack spacing={{ base: 6, md: 8 }}>
@@ -84,13 +80,13 @@ const Detail = () => {
                 <Heading
                   lineHeight={1.1}
                   fontWeight={600}
-                  fontSize={{ base: "2xl", sm: "4xl", lg: "5xl" }}
+                  fontSize={{ base: "2xl", sm: "4xl", lg: "4xl" }}
                   color={"black"}
                 >
                   {detailProduct.name}
                 </Heading>
                 <Text
-                  color={useColorModeValue("black", "gray.400")}
+                  color={useColorModeValue("black", "black")}
                   fontWeight={"bold"}
                   fontSize={"2xl"}
                 >
@@ -121,10 +117,10 @@ const Detail = () => {
                 </VStack>
                 <Box>
                   <Flex>
-                    <Box bg={""} w={"40%"} mt={"9%"}>
+                    <Box bg={""} w={"40%"} mt={"1%"}>
                       <Text
                         fontSize={{ base: "30px", lg: "30px" }}
-                        color={useColorModeValue("black", "yellow.300")}
+                        color={useColorModeValue("black", "black")}
                         fontWeight={"bold"}
                         textTransform={"uppercase"}
                         mb={"4"}
@@ -133,26 +129,6 @@ const Detail = () => {
                       </Text>
 
                       <List spacing={2}>
-                        {/* <ListItem>
-                        <Text
-                          fontSize={"20px"}
-                          color={"white"}
-                          as={"span"}
-                          fontWeight={"500"}
-                        >
-                          Edad Minima: {productDetail.minimun_age}
-                        </Text>
-                      </ListItem> */}
-                        {/* <ListItem>
-                        <Text
-                          fontSize={"20px"}
-                          color={"white"}
-                          as={"span"}
-                          fontWeight={"500"}
-                        >
-                          Quantity: {productDetail.quantity}
-                        </Text>{" "}
-                      </ListItem> */}
                         <ListItem>
                           <Text
                             fontSize={"20px"}
@@ -175,75 +151,6 @@ const Detail = () => {
                         </ListItem>
                       </List>
                     </Box>
-                    {/* <Box bg={""} w={"70%"}>
-                      <Text
-                        color={"white"}
-                        fontWeight={"bold"}
-                        fontSize={"30px"}
-                      >
-                        Reviews
-                      </Text>
-                      <Box
-                        mt={"15px"}
-                        bg={"gray.800"}
-                        h={"100%"}
-                        overflowY="auto"
-                        maxH={"250"}
-                        maxW={"370px"}
-                      >
-                        {!productReviews?.length ? (
-                          <HStack
-                            align={"center"}
-                            w={"330px"}
-                            h={"100px"}
-                            bg={"white"}
-                            m={"10px"}
-                            rounded={"5px"}
-                          >
-                            <Box>
-                              <Flex>
-                                <Text
-                                  color={"gray.600"}
-                                  align={"center"}
-                                  ml={"10px"}
-                                >
-                                  Lo siento, este producto aun no tiene reviews.
-                                </Text>
-                              </Flex>
-                            </Box>
-                          </HStack>
-                        ) : (
-                          productReviews?.map((review) => (
-                            <HStack
-                              key={review.product.id}
-                              align={"center"}
-                              w={"330px"}
-                              h={"100px"}
-                              bg={"white"}
-                              m={"10px"}
-                              rounded={"5px"}
-                            >
-                              <VStack ml={"10px"} align={"start"}>
-                                <Text fontWeight={600}>
-                                  {review.user.first_name}
-                                </Text>
-                                <Box>
-                                  <Flex>
-                                    <Text color={"gray.600"}>
-                                      Ratings: {review.rate}
-                                    </Text>
-                                    <LiaStarSolid size="1.4em" />
-                                  </Flex>
-                                </Box>
-                                <Text color={"gray.600"}>
-                                  Reviews: {review.review}
-                                </Text>
-                              </VStack>
-                            </HStack>
-                          ))
-                        )}
-                      </Box>
-                    </Box> */}
                   </Flex>
                 </Box>
               </Stack>
@@ -254,8 +161,8 @@ const Detail = () => {
                 w={"full"}
                 size={"lg"}
                 py={"7"}
-                bg={useColorModeValue("gray.900", "gray.50")}
-                color={useColorModeValue("white", "gray.900")}
+                bg={useColorModeValue("black", "black")}
+                color={useColorModeValue("#ffa200", "#ffa200")}
                 textTransform={"uppercase"}
                 _hover={{
                   transform: "translateY(2px)",
@@ -264,21 +171,18 @@ const Detail = () => {
               >
                 Agregar al Carrito
               </Button>
-              {/* <Link to={"/"} href={"/"}>
-              <Button ml={"42%"}>Volver</Button>
-            </Link> */}
-              {/* <Stack
-              direction="row"
-              alignItems="center"
-              justifyContent={"center"}
-            >
-              <MdLocalShipping color="white" />
-              <Text color={"white"}>2-3 business days delivery</Text>
-            </Stack> */}
+              <Link to={"/products"} href={"/products"}>
+              <Button ml={"42%"} bg={'black'} color={'#ffa200'}>Volver</Button>
+            </Link>
             </Stack>
           </SimpleGrid>
         </Container>
       </Box>
+      <Box>
+          <SmallWithLogoLeft></SmallWithLogoLeft>
+        </Box>
+      </Flex>
+    </Box>
     );
 };
 

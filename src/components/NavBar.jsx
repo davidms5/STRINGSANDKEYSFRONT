@@ -51,7 +51,7 @@ export default function WithSubnavigation() {
         >
           <Box boxSize={"70px"} mb={"1%"}>
             <Link href={"/"}>
-              <Image src="Logo White.png"></Image>
+              <Image src="/Logo White.png"></Image>
             </Link>
           </Box>
           <Box ml={'3%'}>
