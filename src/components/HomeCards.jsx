@@ -243,7 +243,7 @@ export default function CategoryCards() {
         <Box>
           <Flex direction={"column"} align={"center"}>
             <Box>
-              <Flex>
+              <Flex >
                 <Link
                   href={"/products"}
                   key={"todos"}
@@ -256,10 +256,10 @@ export default function CategoryCards() {
                   }}
                 >
                   <Image src="/all.png"></Image>
+                  <Image ml={'20%'} h={'30vh'} src="/ads.png"></Image>
                 </Link>
               </Flex>
             </Box>
-            <Image w={"60%"} src="/ads.png"></Image>
           </Flex>
         </Box>
       </Flex>

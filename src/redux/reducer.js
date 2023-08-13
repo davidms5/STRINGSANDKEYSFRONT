@@ -55,7 +55,7 @@ const rootReducer = (state = initialState, action) => {
         filteredProducts: productsByCategory,
       };
       case FILTER_PRICE:
-        const productsByPrice = [...state.products].filter((el) => el.price <= action.payload);
+        const productsByPrice = [...state.filteredProducts].filter((el) => el.price <= action.payload);
         return {
           ...state,
           filteredProducts: productsByPrice,

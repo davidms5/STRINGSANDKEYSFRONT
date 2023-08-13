@@ -20,7 +20,7 @@ import {
 } from "../redux/actions";
 import { MdGraphicEq } from "react-icons/md";
 import { useState } from "react";
-
+import { SearchIcon } from "@chakra-ui/icons";
 import { useDispatch, useSelector } from "react-redux";
 
 const FilterAndOrder = () => {
@@ -51,11 +51,13 @@ const FilterAndOrder = () => {
     dispatch(filterCategory(selectedCategory));
   };
 
-  const handlePriceFilter = (val) => {
-    setSliderValue(val);
-    const selectedPrice = val;
-    dispatch(filterPrice(selectedPrice));
+  const handlePriceFilter = () => {
+    dispatch(filterPrice(sliderValue));
   };
+
+  const handlePrice = (val) => {
+    setSliderValue(val)
+  }
 
   const [sliderValue, setSliderValue] = useState(250000);
 
@@ -90,7 +92,7 @@ const FilterAndOrder = () => {
         <Box>
           <Flex direction={"column"}>
             {isSingleCategory ? (
-              <Box h={'35vh'}>
+              <Box h={"35vh"}>
                 <Text fontWeight={"bold"} fontSize={"3vh"}>
                   Marcas:
                 </Text>
@@ -106,7 +108,7 @@ const FilterAndOrder = () => {
                 ))}
               </Box>
             ) : (
-              <Box h={'35vh'}>
+              <Box h={"38vh"}>
                 <Text fontWeight={"bold"} fontSize={"3vh"}>
                   Categorias:
                 </Text>
@@ -125,12 +127,27 @@ const FilterAndOrder = () => {
           </Flex>
         </Box>
         <br />
-        <Heading fontSize={"4vh"}>$ {sliderValue}</Heading>
+        <Box>
+          <Flex>
+            <Heading w={'70%'} fontSize={"4vh"}>$ {sliderValue}</Heading>
+            <Button
+            w={'24%'}
+            h={'6vh'}
+              _hover={{ transform: "translateY(-2px)", boxShadow: "lg" }}
+              bg={"black"}
+              color={"black"}
+              name="name"
+              onClick={handlePriceFilter}
+            >
+              {<SearchIcon color="#ffa200" />}
+            </Button>
+          </Flex>
+        </Box>
         <Box bg={""} h={"4vh"} w={"90%"} mt={"7%"}>
           <Flex>
             <Slider
               aria-label="slider-ex-4"
-              onChange={(val) => handlePriceFilter(val)}
+              onChange={(val) => handlePrice(val)}
               min={0}
               max={350000}
             >
@@ -152,18 +169,28 @@ const FilterAndOrder = () => {
                 </option>
               ))}
             </select> */}
-            <Button h={'5vh'} bg={"#ffa200"} color={'black'} onClick={() => dispatch(orderByPrice("Ascendente"))}>
+            <Button
+              h={"5vh"}
+              bg={"#ffa200"}
+              color={"black"}
+              onClick={() => dispatch(orderByPrice("Ascendente"))}
+            >
               Menor precio
             </Button>
             <br></br>
-            <Button h={'5vh'} bg={"#ffa200"} color={'black'} onClick={() => dispatch(orderByPrice("Descendente"))}>
+            <Button
+              h={"5vh"}
+              bg={"#ffa200"}
+              color={"black"}
+              onClick={() => dispatch(orderByPrice("Descendente"))}
+            >
               Mayor precio
             </Button>
             <br />
             <Button
               _hover={{ transform: "translateY(-2px)", boxShadow: "lg" }}
               bg={"black"}
-              h={'5vh'}
+              h={"5vh"}
               color={"#ffa200"}
               name="reset"
               onClick={() => {
