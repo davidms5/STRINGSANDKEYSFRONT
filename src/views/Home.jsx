@@ -38,7 +38,7 @@ const Home = () => {
             <br />
             <br />
             <Box bg={''}>
-              <Flex justify={'center'}>
+              <Flex direction={'column'} align={'center'}>
               <CategoryCards></CategoryCards>
               </Flex>
             </Box>
