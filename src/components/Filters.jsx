@@ -23,8 +23,12 @@ import { useState } from "react";
 import { SearchIcon } from "@chakra-ui/icons";
 import { useDispatch, useSelector } from "react-redux";
 
+
+
 const FilterAndOrder = () => {
+  
   const dispatch = useDispatch();
+
 
   const filteredProducts = useSelector((state) => state.filteredProducts);
 
@@ -59,7 +63,7 @@ const FilterAndOrder = () => {
     setSliderValue(val)
   }
 
-  const [sliderValue, setSliderValue] = useState(250000);
+  const [sliderValue, setSliderValue] = useState(150000);
 
   const resetInput = () => {
     dispatch(filterCategory("todos"));

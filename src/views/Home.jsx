@@ -26,7 +26,7 @@ const Home = () => {
     >
       <Flex direction={"column"}>
         <WithSubnavigation></WithSubnavigation>
-        <Box h={'230vh'} pt={'100px'} bg={''}>
+        <Box h={'250vh'} pt={'100px'} bg={''}>
           <Flex direction={'column'} align={'center'}>
             <Box h={'60vh'} w={'100%'} align={'center'} borderBottom={'3px solid black'} overflow={'hidden'}>
               <Image  src="/slider2.jpg"></Image>
