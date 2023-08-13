@@ -38,7 +38,7 @@ const SearchBar = () => {
             <Link to={`/products?name=${name}`}>
                 <button 
                     w={'400px'} 
-                    bg={'white'} 
+                    bg={'white'}
                     color={'black'} 
                     _placeholder={{ opacity: 1, color: 'gray.500' }}
                     onClick={(e)=>handlerSubmit(e)}
