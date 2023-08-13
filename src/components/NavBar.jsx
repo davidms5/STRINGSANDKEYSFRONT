@@ -43,6 +43,7 @@ export default function WithSubnavigation() {
         borderColor={useColorModeValue("gray.900", "gray.900")}
         align={"center"}
         position="fixed"
+        zIndex={10}
       >
         <Flex
           flex={{ base: 1 }}
@@ -267,18 +268,14 @@ const NAV_ITEMS = [
     children: [
       {
         label: "Modificar o Crear Producto",
-        subLabel: "Trending Design to inspire you",
-        href: "#",
+        subLabel: "Editar, Eliminar o Crear Producto",
+        href: "/admin/edit",
       },
       {
         label: "Estadisticas",
         subLabel: "Up-and-coming Designers",
         href: "#",
       },
-      {
-        label: "Crear Producto",
-        href:"/admin/crear-producto"
-      }
     ],
   },
   {

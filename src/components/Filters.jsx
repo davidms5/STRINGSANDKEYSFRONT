@@ -80,14 +80,52 @@ const FilterAndOrder = () => {
   return (
     <Box bg={"gray.200"} w={"25vh"} color={"black"} rounded={"5px"}>
       <Flex direction={"column"}>
-        <Text fontSize={"14px"}>
+        <Text fontSize={"2vh"}>
           {isSingleCategory && isSingleBrand
             ? `Todos los Productos > ${firstCategory} > ${firstBrand}`
             : isSingleCategory
             ? `Todos los Productos > ${firstCategory}`
             : "Todos los Productos"}
         </Text>
-        <Heading fontSize={"30px"}>$ {sliderValue}</Heading>
+        <Box>
+          <Flex direction={"column"}>
+            {isSingleCategory ? (
+              <Box h={'35vh'}>
+                <Text fontWeight={"bold"} fontSize={"3vh"}>
+                  Marcas:
+                </Text>
+                {brands?.map((el, index) => (
+                  <Text
+                    key={index}
+                    onClick={handleBrandFilter}
+                    cursor="pointer"
+                    fontSize={"2vh"}
+                  >
+                    {el}
+                  </Text>
+                ))}
+              </Box>
+            ) : (
+              <Box h={'35vh'}>
+                <Text fontWeight={"bold"} fontSize={"3vh"}>
+                  Categorias:
+                </Text>
+                {category?.map((el, index) => (
+                  <Text
+                    key={index}
+                    onClick={handleCategoryFilter}
+                    cursor="pointer"
+                    fontSize={"2vh"}
+                  >
+                    {el}
+                  </Text>
+                ))}
+              </Box>
+            )}
+          </Flex>
+        </Box>
+        <br />
+        <Heading fontSize={"4vh"}>$ {sliderValue}</Heading>
         <Box bg={""} h={"4vh"} w={"90%"} mt={"7%"}>
           <Flex>
             <Slider
@@ -106,44 +144,6 @@ const FilterAndOrder = () => {
           </Flex>
         </Box>
         <Box>
-          <Flex direction={"column"}>
-            {isSingleCategory ? (
-              <>
-                <Text fontWeight={"bold"} fontSize={"20px"}>
-                  Marcas:
-                </Text>
-                {brands?.map((el, index) => (
-                  <Text
-                    key={index}
-                    onClick={handleBrandFilter}
-                    cursor="pointer"
-                    fontSize={"14px"}
-                  >
-                    {el}
-                  </Text>
-                ))}
-              </>
-            ) : (
-              <>
-                <Text fontWeight={"bold"} fontSize={"20px"}>
-                  Categorias:
-                </Text>
-                {category?.map((el, index) => (
-                  <Text
-                    key={index}
-                    onClick={handleCategoryFilter}
-                    cursor="pointer"
-                    fontSize={"14px"}
-                  >
-                    {el}
-                  </Text>
-                ))}
-              </>
-            )}
-          </Flex>
-        </Box>
-        <br />
-        <Box>
           <Flex direction={"column"} justify={"center"} mb={"20%"}>
             {/* <select onChange={(e) => dispatch(orderByPrice(e.target.value))}>
               {["Ascendente", "Descendente"].map((e, i) => (
@@ -152,17 +152,19 @@ const FilterAndOrder = () => {
                 </option>
               ))}
             </select> */}
-            <Button onClick={() => dispatch(orderByPrice("Ascendente"))}>
+            <Button h={'5vh'} bg={"#ffa200"} color={'black'} onClick={() => dispatch(orderByPrice("Ascendente"))}>
               Menor precio
             </Button>
-            <Button onClick={() => dispatch(orderByPrice("Descendente"))}>
+            <br></br>
+            <Button h={'5vh'} bg={"#ffa200"} color={'black'} onClick={() => dispatch(orderByPrice("Descendente"))}>
               Mayor precio
             </Button>
             <br />
             <Button
               _hover={{ transform: "translateY(-2px)", boxShadow: "lg" }}
-              bg={"#ffa200"}
-              color={"black"}
+              bg={"black"}
+              h={'5vh'}
+              color={"#ffa200"}
               name="reset"
               onClick={() => {
                 resetInput();
