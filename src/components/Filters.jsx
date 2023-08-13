@@ -78,7 +78,7 @@ const FilterAndOrder = () => {
   );
 
   return (
-    <Box bg={"gray.200"} w={'25vh'} color={'black'} rounded={'5px'}>
+    <Box bg={"gray.200"} w={"25vh"} color={"black"} rounded={"5px"}>
       <Flex direction={"column"}>
         <Text fontSize={"14px"}>
           {isSingleCategory && isSingleBrand
@@ -144,14 +144,20 @@ const FilterAndOrder = () => {
         </Box>
         <br />
         <Box>
-          <Flex direction={'column'} justify={"center"} mb={"20%"}>
-            <select onChange={(e) => dispatch(orderByPrice(e.target.value))}>
+          <Flex direction={"column"} justify={"center"} mb={"20%"}>
+            {/* <select onChange={(e) => dispatch(orderByPrice(e.target.value))}>
               {["Ascendente", "Descendente"].map((e, i) => (
                 <option value={e} key={i}>
                   {e}
                 </option>
               ))}
-            </select>
+            </select> */}
+            <Button onClick={() => dispatch(orderByPrice("Ascendente"))}>
+              Menor precio
+            </Button>
+            <Button onClick={() => dispatch(orderByPrice("Descendente"))}>
+              Mayor precio
+            </Button>
             <br />
             <Button
               _hover={{ transform: "translateY(-2px)", boxShadow: "lg" }}
