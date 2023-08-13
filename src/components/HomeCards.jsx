@@ -256,7 +256,7 @@ export default function CategoryCards() {
                   }}
                 >
                   <Image src="/all.png"></Image>
-                  <Image ml={'20%'} h={'30vh'} src="/ads.png"></Image>
+                  <Image ml={'20%'} h={'30vh'} objectFit="cover" src="/ads.png"></Image>
                 </Link>
               </Flex>
             </Box>
