@@ -9,6 +9,7 @@ import {
   Text,
   Heading,
   FormLabel,
+  Link,
   Input,
   Button,
 } from "@chakra-ui/react";
@@ -201,7 +202,7 @@ const FilterAndOrder = () => {
                 resetInput();
               }}
             >
-              Reset
+              <Link href={'/products'}>Reset</Link>
             </Button>
           </Flex>
         </Box>

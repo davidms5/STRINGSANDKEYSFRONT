@@ -130,7 +130,7 @@ export default function EditProduct() {
                             </Link>
                           </Box>
                           <VStack align={"start"}>
-                            <Text fontSize={"1.5vh"} fontWeight={600}>
+                            <Text color={'white'} fontSize={"1.5vh"} fontWeight={600}>
                               {feature.name.length > 50
                                 ? `${feature.name.substring(0, 30)}...`
                                 : feature.name}
