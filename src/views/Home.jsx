@@ -8,11 +8,11 @@ import { emptyStates } from "../redux/actions";
 
 const Home = () => {
 
-  // const dispatch = useDispatch()
+  const dispatch = useDispatch()
 
-  // useEffect(() => {
-  //   dispatch(emptyStates())
-  // })
+  useEffect(() => {
+    dispatch(emptyStates())
+  })
 
   return (
     <Box

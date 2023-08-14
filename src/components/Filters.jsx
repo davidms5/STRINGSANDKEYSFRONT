@@ -18,18 +18,19 @@ import {
   orderByPrice,
   filterCategory,
   filterPrice,
+  getProducts,
 } from "../redux/actions";
 import { MdGraphicEq } from "react-icons/md";
 import { useState } from "react";
 import { SearchIcon } from "@chakra-ui/icons";
 import { useDispatch, useSelector } from "react-redux";
+import { emptyStates } from "../redux/actions";
 
 
 
 const FilterAndOrder = () => {
   
   const dispatch = useDispatch();
-
 
   const filteredProducts = useSelector((state) => state.filteredProducts);
 
@@ -57,7 +58,19 @@ const FilterAndOrder = () => {
   };
 
   const handlePriceFilter = () => {
-    dispatch(filterPrice(sliderValue));
+    const val = sliderValue;
+    const cat = firstCategory;
+    const bra = firstBrand; 
+  
+    if (isSingleCategory && isSingleBrand) {
+      dispatch(filterPrice({ val, cat, bra }));
+    } else if (isSingleCategory && !isSingleBrand) {
+      dispatch(filterPrice({ val, cat }));
+    } else if (!isSingleCategory && isSingleBrand) {
+      dispatch(filterPrice({ val, bra }));
+    } else {
+      dispatch(filterPrice({ val }));
+    }
   };
 
   const handlePrice = (val) => {
@@ -67,6 +80,7 @@ const FilterAndOrder = () => {
   const [sliderValue, setSliderValue] = useState(150000);
 
   const resetInput = () => {
+    dispatch(emptyStates())
     dispatch(filterCategory("todos"));
   };
 
@@ -87,13 +101,14 @@ const FilterAndOrder = () => {
   return (
     <Box bg={"gray.200"} w={"25vh"} color={"black"} rounded={"5px"}>
       <Flex direction={"column"}>
+        {filteredProducts.length === 0? <Text>No se encontraron productos.</Text> :
         <Text fontSize={"2vh"}>
           {isSingleCategory && isSingleBrand
             ? `Todos los Productos > ${firstCategory} > ${firstBrand}`
             : isSingleCategory
             ? `Todos los Productos > ${firstCategory}`
             : "Todos los Productos"}
-        </Text>
+        </Text>}
         <Box>
           <Flex direction={"column"}>
             {isSingleCategory ? (
@@ -201,8 +216,8 @@ const FilterAndOrder = () => {
               onClick={() => {
                 resetInput();
               }}
-            >
-              <Link href={'/products'}>Reset</Link>
+              
+            ><Link href="/products" >Reset</Link>
             </Button>
           </Flex>
         </Box>

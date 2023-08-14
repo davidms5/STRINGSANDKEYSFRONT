@@ -1,7 +1,7 @@
 import { persistReducer } from "redux-persist";
 import storageSession from "redux-persist/lib/storage/session";
 import storage from "redux-persist/lib/storage";
-import { FILTER_BRAND, GET_PRODUCTS, FILTER_CATEGORY, EMPTY_STATES, ORDER_BY_PRICE, GET_PRODUCT_NAME, GET_PRODUCT_BY_ID, FILTER_PRICE} from "./actions";
+import { FILTER_BRAND, GET_PRODUCTS, FILTER_CATEGORY, EMPTY_STATES, ORDER_BY_PRICE, GET_PRODUCT_NAME, GET_PRODUCT_BY_ID, FILTER_PRICE, FILTER_PRICE_NAME, SET_PAGE} from "./actions";
 const persistConfig = {
   key: "root",
   //storage: storageSession,
@@ -12,10 +12,16 @@ const initialState = {
   products: [],
   filteredProducts: [],
   details: {},
+  currentPage: 0,
 };
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
+    case SET_PAGE:
+      return {
+        ...state,
+        currentPage: action.payload,
+      };
     case ORDER_BY_PRICE:
       const { payload } = action;
       let orderPrice;
@@ -55,8 +61,19 @@ const rootReducer = (state = initialState, action) => {
         filteredProducts: productsByCategory,
       };
       case FILTER_PRICE:
-        const productsByPrice = [...state.filteredProducts].filter((el) => el.price <= action.payload);
-        return {
+        const productsByPrice = state.products.filter((el) => {
+          if (action.payload.bra) {
+            return (
+              el.price <= action.payload.val &&
+              el.category === action.payload.cat &&
+              el.brand === action.payload.bra
+            );
+          } else if (action.payload.cat) {
+            return el.price <= action.payload.val && el.category === action.payload.cat;
+          } else {
+            return el.price <= action.payload.val;
+          }
+        });        return {
           ...state,
           filteredProducts: productsByPrice,
         };
@@ -69,7 +86,6 @@ const rootReducer = (state = initialState, action) => {
       case EMPTY_STATES:
         return{
           ...state,
-          products:[],
           filteredProducts: [],
         }
     default:
