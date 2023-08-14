@@ -21,10 +21,13 @@ import { brands, categories } from "./formData";
 import { PostProduct } from "../../redux/actions";
 import WithSubnavigation from "../../components/NavBar";
 import SmallWithLogoLeft from "../../components/Footer";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useToast } from '@chakra-ui/react'
 
 export default function CreateProduct() {
   const dispatch = useDispatch();
+  const toast = useToast();
+  const navigate = useNavigate();
 
   const [form, setForm] = useState({
     name: "",
@@ -51,8 +54,13 @@ export default function CreateProduct() {
     setImage(file);
   };
 
-  const handleNumbersChange = (value, name) => {
+  const handleNumbersChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    
     setForm((prevState) => ({ ...prevState, [name]: value }));
+    console.log(name);
+    console.log(value);
   };
 
   const handleSubmit = async (event) => {
@@ -75,6 +83,16 @@ export default function CreateProduct() {
       //console.log(image);
 
       dispatch(PostProduct(postData));
+
+      toast({
+        title: "Producto Creado",
+        description: "El Producto a sido creado con exito.",
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+      });
+
+      navigate('/admin/edit');
 
       //setImage(null);
 
@@ -109,7 +127,7 @@ export default function CreateProduct() {
           <Heading color={"black"} fontSize={"4vh"}>
             Crear Producto
           </Heading>
-          {console.log(form, image)}
+          {/* {console.log(form, image)} */}
           <Flex direction="column" align={"center"} color={"black"} bg={""}>
             <form onSubmit={handleSubmit}>
               <FormControl>

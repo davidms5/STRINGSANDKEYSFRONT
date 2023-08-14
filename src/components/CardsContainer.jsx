@@ -72,26 +72,11 @@ const CardsContainer = () => {
       <Box>
         <Flex>
           <SimpleGrid columns={5} bg={""} w={"100%"} h={"100%"}>
-            {/* {displayedProducts.length > 0 &&
-              displayedProducts.map((product) => {
-                return (
-                  <Link to={`/detail/${product.id}`}>
-                  <ProductSimple
-                    key={product.id}
-                    id={product.id}
-                    image={product.image}
-                    name={product.name}
-                    brand={product.brand}
-                    price={product.price}
-                  />
-                  </Link>
-                );
-              })} */}
             {
               displayedProducts?.length ? (
                 displayedProducts.map((product) => {
                   return (
-                    <Link to={`/detail/${product.id}`}>
+                    <Link key={product.id} to={`/detail/${product.id}`}>
                     <ProductSimple
                       key={product.id}
                       id={product.id}

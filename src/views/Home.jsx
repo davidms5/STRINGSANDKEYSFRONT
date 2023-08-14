@@ -4,7 +4,7 @@ import SmallWithLogoLeft from "../components/Footer"
 import CategoryCards from "../components/HomeCards"
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { emptyStates } from "../redux/actions";
+import { emptyStates, getProducts } from "../redux/actions";
 
 const Home = () => {
 
@@ -13,6 +13,12 @@ const Home = () => {
   useEffect(() => {
     dispatch(emptyStates())
   })
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getProducts()); //me traigo los productos
+  }, [dispatch]);
 
   return (
     <Box
