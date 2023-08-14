@@ -4,6 +4,17 @@ import { useEffect, useState } from "react";
 import { Box, Flex, Heading, Image, SimpleGrid } from "@chakra-ui/react";
 import {Link} from "react-router-dom";
 
+//alert//
+import {
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription,
+} from '@chakra-ui/react'
+import { Search2Icon } from '@chakra-ui/icons'
+
+//alert//
+
 const CardsContainer = () => {
   const allproducts = useSelector((state) => state.products);
   const filteredProducts = useSelector((state) => state.filteredProducts)
@@ -56,7 +67,7 @@ const CardsContainer = () => {
       <Box>
         <Flex>
           <SimpleGrid columns={5} bg={""} w={"100%"} h={"100%"}>
-            {displayedProducts.length > 0 &&
+            {/* {displayedProducts.length > 0 &&
               displayedProducts.map((product) => {
                 return (
                   <Link to={`/detail/${product.id}`}>
@@ -70,7 +81,53 @@ const CardsContainer = () => {
                   />
                   </Link>
                 );
-              })}
+              })} */}
+            {
+              displayedProducts?.length ? (
+                displayedProducts.map((product) => {
+                  return (
+                    <Link to={`/detail/${product.id}`}>
+                    <ProductSimple
+                      key={product.id}
+                      id={product.id}
+                      image={product.image}
+                      name={product.name}
+                      brand={product.brand}
+                      price={product.price}
+                    />
+                    </Link>
+                  );
+                })
+              ) : (
+                <Box
+                  mt={'10vh'}
+                  p={'10px'}
+                  display='flex'
+                  gridColumn={3}
+                  gridRow={2}
+                  
+                >
+                  <Alert
+                    status="success"
+                    variant="subtle"
+                    flexDirection="column"
+                    alignItems="center"
+                    justifyContent="center"
+                    textAlign="center"
+                    height="200px"
+                    borderRadius='10px'
+                  >
+                    <Search2Icon boxSize="40px" mr={0} />
+                    <AlertTitle mt={4} mb={1} fontSize="lg">
+                      Sin Resultados!
+                    </AlertTitle>
+                    <AlertDescription maxWidth="sm">
+                      No hay productos que coincidan con tu busqueda.
+                    </AlertDescription>
+                  </Alert>
+                </Box>
+              )
+            }
           </SimpleGrid>
         </Flex>
       </Box>
