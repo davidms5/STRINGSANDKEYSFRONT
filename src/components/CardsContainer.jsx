@@ -1,8 +1,9 @@
 import ProductSimple from "../components/Card";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { Box, Flex, Heading, Image, SimpleGrid } from "@chakra-ui/react";
 import {Link} from "react-router-dom";
+//import {setPage} from "../redux/actions"
 
 //alert//
 import {
@@ -16,8 +17,12 @@ import { Search2Icon } from '@chakra-ui/icons'
 //alert//
 
 const CardsContainer = () => {
+
+  const dispatch = useDispatch();
+
   const allproducts = useSelector((state) => state.products);
   const filteredProducts = useSelector((state) => state.filteredProducts)
+  //const filteredPage = useSelector((state) => state.currentPage)
 
   const [currentPage, setCurrentPage] = useState(0);
   const productPerPage = 10;

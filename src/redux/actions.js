@@ -9,6 +9,9 @@ export const GET_PRODUCT_BY_ID = 'GET_PRODUCT_BY_ID';
 export const EMPTY_STATES = "EMPTY_STATES";
 export const FILTER_PRICE = "FILTER_PRICE";
 export const POST_PRODUCT = "POST_PRODUCT";
+export const FILTER_PRICE_NAME = "FILTER_PRICE_NAME"
+export const SET_PAGE = "SET_PAGE"
+
 
 const VITE_LOCAL_HOST = import.meta.env.VITE_LOCAL_HOST;
 
@@ -24,6 +27,13 @@ export const getProducts = () => {
         })
     };
 };
+
+export const setPage = (page) => {
+    return {
+      type: SET_PAGE,
+      payload: page,
+    };
+  };
 
 export function getProductName(name){
     return async function(dispatch){
@@ -46,12 +56,19 @@ export const filterBrand = (brand) => {
     }
 };
 
-export const filterPrice = (val) => {
+export const filterPrice = ({val,cat,bra}) => {
     return {
         type: FILTER_PRICE,
-        payload: val,
+        payload: {val,cat,bra}
     }
 };
+
+export const getProductNamePrice = (name) => {
+    return {
+        type: FILTER_PRICE_NAME,
+        payload: name
+    }
+}
 
 
 export const filterCategory = (category) => {

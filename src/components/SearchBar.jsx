@@ -1,23 +1,29 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { getProductName } from '../redux/actions';
+import { getProductName, getProductNamePrice } from '../redux/actions';
 import { Input } from '@chakra-ui/react';
+import {useLocation} from "react-router-dom"
 
 const SearchBar = () => {
     const dispatch = useDispatch();
     const [name, setName] = useState("");
+    const location = useLocation()
 
     function handlerInput(e) {
         const searchInput = (e.target.value)
         setName(searchInput);
-        dispatch(getProductName(searchInput));
+        //dispatch(getProductName(searchInput));
     }
+
 
     function handlerSubmit(e) {
         e.preventDefault();
         dispatch(getProductName(name));
+        dispatch(getProductNamePrice(name));
         setName("");
-        window.location.href = `/products?search=${encodeURIComponent(name)}`;
+        if(location.pathname != "/products")
+        {
+        window.location.href = `/products?search=${encodeURIComponent(name)}`};
     }
 
     return (
