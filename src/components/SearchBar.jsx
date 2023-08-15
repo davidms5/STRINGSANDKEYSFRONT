@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { getProductName, getProductNamePrice } from "../redux/actions";
-import { Input, Box, Button, Flex } from "@chakra-ui/react";
-import { useLocation } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { getProductName, getProductNamePrice } from '../redux/actions';
+import { Input, Box, Button, Flex } from '@chakra-ui/react';
+import {useLocation} from "react-router-dom"
 import { MdGraphicEq } from "react-icons/md";
 import { SearchIcon } from "@chakra-ui/icons";
 
@@ -17,15 +17,16 @@ const SearchBar = () => {
     //dispatch(getProductName(searchInput));
   }
 
-  function handlerSubmit(e) {
-    e.preventDefault();
-    dispatch(getProductName(name));
-    dispatch(getProductNamePrice(name));
-    setName("");
-    if (location.pathname != "/products") {
-      window.location.href = `/products?search=${encodeURIComponent(name)}`;
+    function handlerSubmit(e) {
+        e.preventDefault();
+        dispatch(getProductName(name));
+        dispatch(getProductNamePrice(name));
+        setName("");
+        if(location.pathname != "/products")
+        {
+        window.location.href = `/products?search=${encodeURIComponent(name)}`};
+        dispatch(setPage(0))
     }
-  }
 
   return (
     <Box>

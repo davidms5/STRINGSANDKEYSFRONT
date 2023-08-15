@@ -13,6 +13,7 @@ import {
   AlertDescription,
 } from '@chakra-ui/react'
 import { Search2Icon } from '@chakra-ui/icons'
+import { setPage } from "../redux/actions";
 
 //alert//
 
@@ -22,30 +23,30 @@ const CardsContainer = () => {
 
   const allproducts = useSelector((state) => state.products);
   const filteredProducts = useSelector((state) => state.filteredProducts)
-  //const filteredPage = useSelector((state) => state.currentPage)
+  const filteredPage = useSelector((state) => state.currentPage)
 
   const [currentPage, setCurrentPage] = useState(0);
   const productPerPage = 10;
   const totalPages = filteredProducts? Math.ceil(filteredProducts.length / productPerPage) : Math.ceil(allproducts.length / productPerPage);
 
   const displayedProducts = filteredProducts? filteredProducts.slice(
-    currentPage * productPerPage,
-    (currentPage + 1) * productPerPage
+    filteredPage * productPerPage,
+    (filteredPage + 1) * productPerPage
   ) : 
   allproducts.slice(
-    currentPage * productPerPage,
-    (currentPage + 1) * productPerPage
+    filteredPage * productPerPage,
+    (filteredPage + 1) * productPerPage
   );
 
   const handleNext = () => {
-    if (currentPage < totalPages - 1) {
-      setCurrentPage((prevPage) => prevPage + 1);
+    if (filteredPage < totalPages - 1) {
+      dispatch(setPage(filteredPage + 1));
     }
   };
 
   const handlePrevious = () => {
-    if (currentPage > 0) {
-      setCurrentPage((prevPage) => prevPage - 1);
+    if (filteredPage > 0) {
+      dispatch(setPage(filteredPage - 1));
     }
   };
 
@@ -54,15 +55,15 @@ const CardsContainer = () => {
       <Box>
         <Flex justify={'center'}>
           <div>
-            <button onClick={handlePrevious} disabled={currentPage === 0}>
+            <button onClick={handlePrevious} disabled={filteredPage === 0}>
               ←
             </button>
             <button>
-              Pagina {currentPage + 1} de {totalPages}
+              Pagina {filteredPage + 1} de {totalPages}
             </button>
             <button
               onClick={handleNext}
-              disabled={currentPage === totalPages - 1}
+              disabled={filteredPage === totalPages - 1}
             >
               →
             </button>
