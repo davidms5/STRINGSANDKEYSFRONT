@@ -57,7 +57,7 @@ export default function WithSubnavigation() {
           <Box ml={'3%'} bg={''} w={'90%'}>
             <Flex align={'center'} mt={'2%'}>
               <Box ><DesktopNav/></Box>
-              <Box><SearchBar /></Box>
+              <Box ml={'5vh'}><SearchBar /></Box>
             </Flex>
           </Box>
         </Flex>
@@ -79,7 +79,7 @@ export default function WithSubnavigation() {
             variant={"link"}
             href={"#"}
           >
-            Registrate
+            Registrarse
           </Button>
           <Button
             as={"a"}
@@ -93,7 +93,7 @@ export default function WithSubnavigation() {
               bg: "",
             }}
           >
-            Inicia Sesion
+            Iniciar Sesion
           </Button>
         </Stack>
       </Flex>
@@ -202,22 +202,22 @@ const NAV_ITEMS = [
       },
       {
         label: "Estadisticas",
-        subLabel: "Up-and-coming Designers",
+        subLabel: "Ventas, Usarios y Estadisticas",
         href: "#",
       },
     ],
   },
   {
-    label: "Mi Cuenta",
+    label: "Perfil",
     children: [
       {
         label: "Mis Datos",
-        subLabel: "Find your dream design job",
+        subLabel: "Informacion del Usuario",
         href: "#",
       },
       {
         label: "Mis Favoritos",
-        subLabel: "An exclusive list for contract work",
+        subLabel: "Instrumentos Favoritos del Usuario",
         href: "#",
       },
     ],
