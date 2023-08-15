@@ -14,8 +14,6 @@ const Home = () => {
     dispatch(emptyStates())
   })
 
-  const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(getProducts()); //me traigo los productos
   }, [dispatch]);
