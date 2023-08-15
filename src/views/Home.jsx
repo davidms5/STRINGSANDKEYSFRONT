@@ -8,6 +8,8 @@ import { emptyStates, getProducts } from "../redux/actions";
 
 const Home = () => {
 
+  const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(emptyStates())
   })
