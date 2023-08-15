@@ -173,7 +173,6 @@ const Detail = () => {
                       rounded={"5px"}
                       bg={useColorModeValue("black", "black")}
                       color={useColorModeValue("#ffa200", "#ffa200")}
-                      textTransform={"uppercase"}
                       _hover={{
                         transform: "translateY(2px)",
                         boxShadow: "lg",
