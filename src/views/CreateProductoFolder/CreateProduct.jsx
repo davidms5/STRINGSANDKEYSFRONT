@@ -14,6 +14,7 @@ import {
   NumberDecrementStepper,
   NumberInput,
   Button,
+  Text,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
@@ -41,7 +42,29 @@ export default function CreateProduct() {
 
   const [image, setImage] = useState(null);
 
-  //const [error, setError] = useState({})
+  const [errors, setErrors] = useState({});
+
+  const validateForm = (form, image) => {
+
+    let errors = {};
+    if(!form.name.trim()) errors.name = 'Nombre requerido';
+    if(!form.brand) errors.brand = 'Marca requerida';
+    if(!form.category) errors.category = 'Categoria requerida';
+    if(!form.description) errors.description = 'Descripcion requerida';
+    if(!form.quantity) errors.quantity = 'Cantidad requerida';
+    if(form.quantity < 0) errors.quantity = 'La cantidad no puede ser menor a 0';
+    if(!form.price) errors.price = 'Precio requerida';
+    if(form.price < 0) errors.price = 'El precio no puede ser menor a 0';
+    if(!image) errors.image = "Imagen de producto requerida";
+    if (image && !image.type.startsWith('image/')) errors.image = 'Formato de imagen no valido'
+
+    return errors; 
+ };
+
+ const handleOnBlur = (e) => {
+  handleChange(e);
+  setErrors(validateForm(form, image));       
+};
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -50,8 +73,10 @@ export default function CreateProduct() {
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
-
     setImage(file);
+    const error = validateForm(form, file);
+    setErrors(error);
+
   };
 
   const handleNumbersChange = (e) => {
@@ -130,7 +155,7 @@ export default function CreateProduct() {
           {/* {console.log(form, image)} */}
           <Flex direction="column" align={"center"} color={"black"} bg={""}>
             <form onSubmit={handleSubmit}>
-              <FormControl>
+              <FormControl isRequired>
                 <Flex direction="column" align={"center"}>
                   <FormLabel h={'2vh'}>Nombre:</FormLabel>
                   <Input
@@ -142,12 +167,12 @@ export default function CreateProduct() {
                     name="name"
                     value={form.name}
                     onChange={handleChange}
-                    required
+                    onBlur={handleOnBlur}
                   />
-
+                  {errors.name && <Text color={'red'} fontSize={'1.5vh'} >{errors.name}</Text>}
                   <FormLabel h={'2vh'}>Marca:</FormLabel>
                   <Select
-                  h={'5vh'}
+                    h={'5vh'}
                     _hover={"none"}
                     bg={"white"}
                     border={"2px solid black"}
@@ -155,7 +180,7 @@ export default function CreateProduct() {
                     name="brand"
                     value={form.brand}
                     onChange={handleChange}
-                    required
+                    onBlur={handleOnBlur}
                   >
                     {brands.map((marca, index) => (
                       <option value={marca} key={index}>
@@ -163,10 +188,10 @@ export default function CreateProduct() {
                       </option>
                     ))}
                   </Select>
-
+                  {errors.brand && <Text color={'red'} fontSize={'1.5vh'} >{errors.brand}</Text>}
                   <FormLabel h={'2vh'}>Categoria:</FormLabel>
                   <Select
-                  h={'5vh'}
+                    h={'5vh'}
                     _hover={"none"}
                     bg={"white"}
                     border={"2px solid black"}
@@ -174,7 +199,7 @@ export default function CreateProduct() {
                     name="category"
                     value={form.category}
                     onChange={handleChange}
-                    required
+                    onBlur={handleOnBlur}
                   >
                     {categories.map((categoria, index) => (
                       <option value={categoria} key={index}>
@@ -182,7 +207,7 @@ export default function CreateProduct() {
                       </option>
                     ))}
                   </Select>
-
+                  {errors.category && <Text color={'red'} fontSize={'1.5vh'} >{errors.category}</Text>}
                   <FormLabel h={'2vh'}>Descripcion Del Producto:</FormLabel>
                   <Input
                     _hover={"none"}
@@ -192,10 +217,10 @@ export default function CreateProduct() {
                     name="description"
                     value={form.description}
                     onChange={handleChange}
-                    required
-                    h={'8vh'}
+                    onBlur={handleOnBlur}
+                    h={'5vh'}
                   />
-
+                  {errors.description && <Text color={'red'} fontSize={'1.5vh'} >{errors.description}</Text>}
                   <FormLabel h={'2vh'}>Cantidad:</FormLabel>
                   <Input
                   h={'5vh'}
@@ -210,9 +235,9 @@ export default function CreateProduct() {
                       (value) =>
                         handleNumbersChange(value, "quantity") /*handleChange*/
                     }
-                    required
+                    onBlur={handleOnBlur}
                   />
-
+                  {errors.quantity && <Text color={'red'} fontSize={'1.5vh'} >{errors.quantity}</Text>}
                   <FormLabel h={'2vh'}>Precio:</FormLabel>
                   <Input
                   h={'5vh'}
@@ -227,9 +252,8 @@ export default function CreateProduct() {
                       (value) =>
                         handleNumbersChange(value, "price") /*handleChange*/
                     }
-                    required
                   />
-
+                  {errors.price && <Text color={'red'} fontSize={'1.5vh'} >{errors.price}</Text>}
                   <FormLabel h={'2vh'} htmlFor="image"> Imagen:</FormLabel>
                   <Input
                   h={'5vh'}
@@ -242,6 +266,7 @@ export default function CreateProduct() {
                     w={"350px"}
                     onChange={handleImageChange}
                   />
+                  {errors.image && <Text color={'red'} fontSize={'1.5vh'} >{errors.image}</Text>}
                   <br />
                   <Box>
                     <Flex>
@@ -257,6 +282,7 @@ export default function CreateProduct() {
                         color={"black"}
                         bg={"#ffa200"}
                         type="submit"
+                        isDisabled={Object.keys(errors).length || form.name=== '' || form.brand === ''}
                       >
                         Crear Producto
                       </Button>
