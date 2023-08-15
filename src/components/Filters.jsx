@@ -19,9 +19,10 @@ import {
   filterCategory,
   filterPrice,
   getProducts,
+  setPage,
 } from "../redux/actions";
 import { MdGraphicEq } from "react-icons/md";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { SearchIcon } from "@chakra-ui/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { emptyStates } from "../redux/actions";
@@ -31,6 +32,10 @@ import { emptyStates } from "../redux/actions";
 const FilterAndOrder = () => {
   
   const dispatch = useDispatch();
+
+  //useEffect(() => {
+//
+  //}, [])
 
   const filteredProducts = useSelector((state) => state.filteredProducts);
 
@@ -47,14 +52,18 @@ const FilterAndOrder = () => {
   console.log(brands);
 
   const handleBrandFilter = (e) => {
+    
+
     const selectedBrand = e.target.innerText;
     console.log(selectedBrand);
     dispatch(filterBrand(selectedBrand));
+    dispatch(setPage(0));
   };
 
   const handleCategoryFilter = (e) => {
     const selectedCategory = e.target.innerText;
     dispatch(filterCategory(selectedCategory));
+    dispatch(setPage(0));
   };
 
   const handlePriceFilter = () => {
@@ -71,10 +80,13 @@ const FilterAndOrder = () => {
     } else {
       dispatch(filterPrice({ val }));
     }
+
+    dispatch(setPage(0));
   };
 
   const handlePrice = (val) => {
     setSliderValue(val)
+    
   }
 
   const [sliderValue, setSliderValue] = useState(150000);

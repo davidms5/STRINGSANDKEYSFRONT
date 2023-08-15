@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { getProductName, getProductNamePrice } from '../redux/actions';
+import { getProductName, getProductNamePrice, setPage } from '../redux/actions';
 import { Input } from '@chakra-ui/react';
-import {useLocation} from "react-router-dom"
+import {useLocation} from "react-router-dom";
+
 
 const SearchBar = () => {
     const dispatch = useDispatch();
@@ -24,6 +25,7 @@ const SearchBar = () => {
         if(location.pathname != "/products")
         {
         window.location.href = `/products?search=${encodeURIComponent(name)}`};
+        dispatch(setPage(0))
     }
 
     return (
