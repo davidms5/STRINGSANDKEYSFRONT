@@ -121,7 +121,7 @@ const FilterAndOrder = () => {
                     key={index}
                     onClick={handleBrandFilter}
                     cursor="pointer"
-                    fontSize={"2vh"}
+                    fontSize={"1.5vh"}
                   >
                     {el}
                   </Text>
@@ -137,7 +137,7 @@ const FilterAndOrder = () => {
                     key={index}
                     onClick={handleCategoryFilter}
                     cursor="pointer"
-                    fontSize={"2vh"}
+                    fontSize={"1.5vh"}
                   >
                     {el}
                   </Text>
@@ -149,7 +149,7 @@ const FilterAndOrder = () => {
         <br />
         <Box>
           <Flex>
-            <Heading w={'70%'} fontSize={"4vh"}>$ {sliderValue}</Heading>
+            <Heading w={'70%'} fontSize={"3.5vh"}>$ {sliderValue}</Heading>
             <Button
             w={'24%'}
             h={'6vh'}
@@ -217,7 +217,7 @@ const FilterAndOrder = () => {
                 resetInput();
               }}
               
-            ><Link href="/products" >Reset</Link>
+            ><Link href="/products" >Limpiar Filtros</Link>
             </Button>
           </Flex>
         </Box>

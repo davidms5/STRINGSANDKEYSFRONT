@@ -58,7 +58,7 @@ const CardsContainer = () => {
               ←
             </button>
             <button>
-              Page {currentPage + 1} of {totalPages}
+              Pagina {currentPage + 1} de {totalPages}
             </button>
             <button
               onClick={handleNext}

@@ -23,7 +23,7 @@ export default function CategoryCards() {
     <Box h={"90vh"} w={"90%"} bg={""}>
       <Flex direction={"column"}>
         <SimpleGrid columns={5} row={2} spacing={20}>
-          <Box bg="black" rounded={"10px"} align={"center"} overflow={"hidden"}>
+          <Box _hover={{transform: 'scale(1.01)',}} bg="black" rounded={"10px"} align={"center"} overflow={"hidden"}>
             <Text
               mt={"15px"}
               h={"45px"}
@@ -44,7 +44,7 @@ export default function CategoryCards() {
               <Image src="https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928515/StringsAndKeys/1001_rx2ca0.jpg"></Image>
             </Link>
           </Box>
-          <Box bg="black" rounded={"10px"} align={"center"} overflow={"hidden"}>
+          <Box _hover={{transform: 'scale(1.01)',}} bg="black" rounded={"10px"} align={"center"} overflow={"hidden"}>
             <Text
               mt={"15px"}
               h={"45px"}
@@ -65,7 +65,7 @@ export default function CategoryCards() {
               <Image src="https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928515/StringsAndKeys/1005_piq59k.jpg"></Image>
             </Link>
           </Box>
-          <Box bg="black" rounded={"10px"} align={"center"} overflow={"hidden"}>
+          <Box _hover={{transform: 'scale(1.01)',}} bg="black" rounded={"10px"} align={"center"} overflow={"hidden"}>
             <Text
               mt={"15px"}
               h={"45px"}
@@ -86,7 +86,7 @@ export default function CategoryCards() {
               <Image src="https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928515/StringsAndKeys/1011_hynib2.jpg"></Image>
             </Link>
           </Box>
-          <Box bg="black" rounded={"10px"} align={"center"} overflow={"hidden"}>
+          <Box _hover={{transform: 'scale(1.01)',}} bg="black" rounded={"10px"} align={"center"} overflow={"hidden"}>
             <Text
               mt={"15px"}
               h={"45px"}
@@ -107,7 +107,7 @@ export default function CategoryCards() {
               <Image src="https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928516/StringsAndKeys/1013_w6vdpp.jpg"></Image>
             </Link>
           </Box>
-          <Box bg="black" rounded={"10px"} align={"center"} overflow={"hidden"}>
+          <Box _hover={{transform: 'scale(1.01)',}} bg="black" rounded={"10px"} align={"center"} overflow={"hidden"}>
             <Text
               mt={"15px"}
               h={"45px"}
@@ -128,7 +128,7 @@ export default function CategoryCards() {
               <Image src="https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928516/StringsAndKeys/1016_sbqdew.jpg"></Image>
             </Link>
           </Box>
-          <Box bg="black" rounded={"10px"} align={"center"} overflow={"hidden"}>
+          <Box _hover={{transform: 'scale(1.01)',}} bg="black" rounded={"10px"} align={"center"} overflow={"hidden"}>
             <Text
               mt={"15px"}
               h={"45px"}
@@ -149,7 +149,7 @@ export default function CategoryCards() {
               <Image src="https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928517/StringsAndKeys/1021_kodwap.jpg"></Image>
             </Link>
           </Box>
-          <Box bg="black" rounded={"10px"} align={"center"} overflow={"hidden"}>
+          <Box _hover={{transform: 'scale(1.01)',}} bg="black" rounded={"10px"} align={"center"} overflow={"hidden"}>
             <Text
               color={"#ffa200"}
               fontSize={"2vh"}
@@ -172,7 +172,7 @@ export default function CategoryCards() {
               <Image src="https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928517/StringsAndKeys/1026_wht8zz.jpg"></Image>
             </Link>
           </Box>
-          <Box bg="black" rounded={"10px"} align={"center"} overflow={"hidden"}>
+          <Box _hover={{transform: 'scale(1.01)',}} bg="black" rounded={"10px"} align={"center"} overflow={"hidden"}>
             <Text
               color={"#ffa200"}
               fontSize={"2vh"}
@@ -195,7 +195,7 @@ export default function CategoryCards() {
               <Image src="https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928519/StringsAndKeys/1043_roo9gt.jpg"></Image>
             </Link>
           </Box>
-          <Box bg="black" rounded={"10px"} align={"center"} overflow={"hidden"}>
+          <Box _hover={{transform: 'scale(1.01)',}} bg="black" rounded={"10px"} align={"center"} overflow={"hidden"}>
             <Text
               mt={"15px"}
               h={"45px"}
@@ -216,7 +216,7 @@ export default function CategoryCards() {
               <Image src="https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928520/StringsAndKeys/1049_qfmpgg.jpg"></Image>
             </Link>
           </Box>
-          <Box bg="black" rounded={"10px"} align={"center"} overflow={"hidden"}>
+          <Box _hover={{transform: 'scale(1.01)',}} bg="black" rounded={"10px"} align={"center"} overflow={"hidden"}>
             <Text
               mt={"15px"}
               h={"45px"}
@@ -252,7 +252,7 @@ export default function CategoryCards() {
                     handleCategoryFilter({ target: { value: "todos" } });
                   }}
                   _hover={{
-                    textDecoration: "none",
+                    transform: 'scale(1.03)',
                   }}
                 >
                   <Image src="/all.png"></Image>
