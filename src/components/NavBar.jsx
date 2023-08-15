@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import {
   Box,
   Flex,
@@ -14,60 +14,51 @@ import {
   PopoverTrigger,
   PopoverContent,
   useColorModeValue,
-  useDisclosure
-} from "@chakra-ui/react"
+  useDisclosure,
+} from "@chakra-ui/react";
 import {
   HamburgerIcon,
   CloseIcon,
   ChevronDownIcon,
-  ChevronRightIcon
-} from "@chakra-ui/icons"
-import SearchBar from "../components/SearchBar"
-import { FaShoppingCart } from 'react-icons/fa';
+  ChevronRightIcon,
+} from "@chakra-ui/icons";
+import SearchBar from "../components/SearchBar";
+import { FaShoppingCart } from "react-icons/fa";
 
 export default function WithSubnavigation() {
-  const { isOpen, onToggle } = useDisclosure()
 
   return (
     <Box>
       <Flex
-        bg={useColorModeValue("white", "black")}
-        color={useColorModeValue("gray.600", "white")}
+        bg={useColorModeValue("black", "black")}
+        color={useColorModeValue("white", "white")}
         minH={"60px"}
-        h={'100px'}
+        h={"100px"}
+        w={"100%"}
         py={{ base: 2 }}
         px={{ base: 4 }}
         borderBottom={1}
         borderStyle={"solid"}
-        borderColor={useColorModeValue("gray.200", "gray.900")}
+        borderColor={useColorModeValue("gray.900", "gray.900")}
         align={"center"}
+        position="fixed"
+        zIndex={10}
       >
         <Flex
-          flex={{ base: 1, md: "auto" }}
-          ml={{ base: -2 }}
-          display={{ base: "flex", md: "none" }}
+          flex={{ base: 1 }}
+          justify={{ base: "center", md: "start" }}
+          ml={10}
         >
-          <IconButton
-            onClick={onToggle}
-            icon={
-              isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />
-            }
-            variant={"ghost"}
-            aria-label={"Toggle Navigation"}
-          />
-        </Flex>
-        <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }} ml={10}>
-            <Box boxSize={'60px'} h={''}>
-              <Link>
-              <Image src="Logo White.png"></Image>
-              </Link>
-            </Box>
-
-          <Flex display={{ base: "none", md: "flex" }} ml={10} mt={'25px'}>
-            <DesktopNav />
-          </Flex>
-          <Box ml={'5%'} mt={'1%'}>
-          <SearchBar/>
+          <Box boxSize={"70px"} mb={"1%"}>
+            <Link href={"/"}>
+              <Image src="/Logo White.png"></Image>
+            </Link>
+          </Box>
+          <Box ml={'3%'} bg={''} w={'90%'}>
+            <Flex align={'center'} mt={'2%'}>
+              <Box ><DesktopNav/></Box>
+              <Box ml={'5vh'}><SearchBar /></Box>
+            </Flex>
           </Box>
         </Flex>
 
@@ -76,10 +67,10 @@ export default function WithSubnavigation() {
           justify={"flex-end"}
           direction={"row"}
           spacing={10}
-          mr={'2%'}
+          mr={"2%"}
         >
           <Link>
-          <FaShoppingCart size={40} color="#ffa200" />
+            <FaShoppingCart size={'5vh'} color="#ffa200" />
           </Link>
           <Button
             as={"a"}
@@ -88,7 +79,7 @@ export default function WithSubnavigation() {
             variant={"link"}
             href={"#"}
           >
-            Registrate
+            Registrarse
           </Button>
           <Button
             as={"a"}
@@ -99,29 +90,26 @@ export default function WithSubnavigation() {
             bg={"#ffa200"}
             href={"#"}
             _hover={{
-              bg: ""
+              bg: "",
             }}
           >
-            Inicia Sesion
+            Iniciar Sesion
           </Button>
         </Stack>
       </Flex>
 
-      <Collapse in={isOpen} animateOpacity>
-        <MobileNav />
-      </Collapse>
     </Box>
-  )
+  );
 }
 
 const DesktopNav = () => {
-  const linkColor = useColorModeValue("gray.600", "gray.200")
-  const linkHoverColor = useColorModeValue("gray.800", "#ffa200")
-  const popoverContentBgColor = useColorModeValue("white", "black")
+  const linkColor = useColorModeValue("gray.200", "gray.200");
+  const linkHoverColor = useColorModeValue("#ffa200", "#ffa200");
+  const popoverContentBgColor = useColorModeValue("black", "black");
 
   return (
     <Stack direction={"row"} spacing={4}>
-      {NAV_ITEMS.map(navItem => (
+      {NAV_ITEMS.map((navItem) => (
         <Box key={navItem.label}>
           <Popover trigger={"hover"} placement={"bottom-start"}>
             <PopoverTrigger>
@@ -129,12 +117,12 @@ const DesktopNav = () => {
                 as="a"
                 p={2}
                 href={navItem.href ?? "#"}
-                fontSize={"sm"}
+                fontSize={"2vh"}
                 fontWeight={500}
                 color={linkColor}
                 _hover={{
                   textDecoration: "none",
-                  color: linkHoverColor
+                  color: linkHoverColor,
                 }}
               >
                 {navItem.label}
@@ -151,7 +139,7 @@ const DesktopNav = () => {
                 minW={"sm"}
               >
                 <Stack>
-                  {navItem.children.map(child => (
+                  {navItem.children.map((child) => (
                     <DesktopSubNav key={child.label} {...child} />
                   ))}
                 </Stack>
@@ -161,8 +149,8 @@ const DesktopNav = () => {
         </Box>
       ))}
     </Stack>
-  )
-}
+  );
+};
 
 const DesktopSubNav = ({ label, href, subLabel }) => {
   return (
@@ -173,7 +161,7 @@ const DesktopSubNav = ({ label, href, subLabel }) => {
       display={"block"}
       p={2}
       rounded={"md"}
-      _hover={{ bg: useColorModeValue("pink.50", "gray.900") }}
+      _hover={{ bg: useColorModeValue("gray.900", "gray.900") }}
     >
       <Stack direction={"row"} align={"center"}>
         <Box>
@@ -199,114 +187,47 @@ const DesktopSubNav = ({ label, href, subLabel }) => {
         </Flex>
       </Stack>
     </Box>
-  )
-}
+  );
+};
 
-const MobileNav = () => {
-  return (
-    <Stack
-      bg={useColorModeValue("white", "gray.800")}
-      p={4}
-      display={{ md: "none" }}
-    >
-      {NAV_ITEMS.map(navItem => (
-        <MobileNavItem key={navItem.label} {...navItem} />
-      ))}
-    </Stack>
-  )
-}
-
-const MobileNavItem = ({ label, children, href }) => {
-  const { isOpen, onToggle } = useDisclosure()
-
-  return (
-    <Stack spacing={4} onClick={children && onToggle}>
-      <Box
-        py={2}
-        as="a"
-        href={href ?? "#"}
-        justifyContent="space-between"
-        alignItems="center"
-        _hover={{
-          textDecoration: "none",
-          color:{ color: "#ffa200" }
-        }}
-      >
-        <Text
-          fontWeight={600}
-          color={useColorModeValue("gray.600", "gray.200")}
-        >
-          {label}
-        </Text>
-        {children && (
-          <Icon
-            as={ChevronDownIcon}
-            transition={"all .25s ease-in-out"}
-            transform={isOpen ? "rotate(180deg)" : ""}
-            w={6}
-            h={6}
-          />
-        )}
-      </Box>
-
-      <Collapse in={isOpen} animateOpacity style={{ marginTop: "0!important" }}>
-        <Stack
-          mt={2}
-          pl={4}
-          borderLeft={1}
-          borderStyle={"solid"}
-          borderColor={useColorModeValue("gray.200", "gray.700")}
-          align={"start"}
-        >
-          {children &&
-            children.map(child => (
-              <Box as="a" key={child.label} py={2} href={child.href}>
-                {child.label}
-              </Box>
-            ))}
-        </Stack>
-      </Collapse>
-    </Stack>
-  )
-}
 
 const NAV_ITEMS = [
   {
     label: "Admin",
     children: [
       {
-        label: "Ventas",
-        subLabel: "Trending Design to inspire you",
-        href: "#"
+        label: "Modificar o Crear Producto",
+        subLabel: "Editar, Eliminar o Crear Producto",
+        href: "/admin/edit",
       },
       {
         label: "Estadisticas",
-        subLabel: "Up-and-coming Designers",
-        href: "#"
-      }
-    ]
+        subLabel: "Ventas, Usarios y Estadisticas",
+        href: "#",
+      },
+    ],
   },
   {
-    label: "Mi Cuenta",
+    label: "Perfil",
     children: [
       {
         label: "Mis Datos",
-        subLabel: "Find your dream design job",
-        href: "#"
+        subLabel: "Informacion del Usuario",
+        href: "#",
       },
       {
         label: "Mis Favoritos",
-        subLabel: "An exclusive list for contract work",
-        href: "#"
-      }
-    ]
+        subLabel: "Instrumentos Favoritos del Usuario",
+        href: "#",
+      },
+    ],
   },
   {
     label: "Nosotros",
-    href: "#"
+    href: "#",
   },
   {
-    label: "Contacto",
-    href: "#"
-  }
-]
+    label: "Inicio",
+    href: "/",
+  },
+];
