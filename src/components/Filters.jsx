@@ -44,10 +44,14 @@ const FilterAndOrder = () => {
     return brandsRaw.indexOf(item) === index;
   });
 
+  brands.sort();
+
   const categoryRaw = filteredProducts.map((el) => el.category);
   const category = categoryRaw.filter((item, index) => {
     return categoryRaw.indexOf(item) === index;
   });
+
+  category.sort();
 
   console.log(brands);
 
