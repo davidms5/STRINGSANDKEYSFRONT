@@ -7,6 +7,6 @@ import react from '@vitejs/plugin-react'
 // })
 export default {
   server: {
-    host: '0.0.0.0', // Cambia esta línea
+    host: 'https://stringsandkeysback-production.up.railway.app/', // Cambia esta línea
   },
 };
